@@ -530,10 +530,10 @@ function new_user_submit()
     mysql_query(
             "INSERT INTO users (username, login_name, userpass, level, money, crystals, donatordays,
              user_level, energy, maxenergy, will, maxwill, brave, maxbrave, hp, maxhp, location, gender,
-              signedup, email, bankmoney, pass_salt)
+              signedup, email, bankmoney, pass_salt, staffnotes)
               VALUES( '{$username}', '{$loginname}', '{$i_encpsw}', $level,
                $money, $crystals, $donator, $ulevel, $energy, $energy, 100, 100, $brave, $brave, $hp, $hp, 1,
-                '{$gender}', " . time() . ", '{$email}', -1, '{$i_salt}')",
+                '{$gender}', " . time() . ", '{$email}', -1, '{$i_salt}', '')",
             $c);
     $i = mysql_insert_id($c);
     mysql_query(

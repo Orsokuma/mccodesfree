@@ -434,12 +434,12 @@ EOF;
              `crystals`, `donatordays`, `user_level`, `energy`, `maxenergy`,
              `will`, `maxwill`, `brave`, `maxbrave`, `hp`, `maxhp`, `location`,
              `gender`, `signedup`, `email`, `bankmoney`, `lastip`,
-             `pass_salt`)
+             `pass_salt`, `staffnotes`)
              VALUES ('{$ins_username}', '{$ins_username}', '{$e_encpsw}', 1,
              100, 0, 0, 2, 12, 12, 100, 100, 5, 5, 100, 100, 1,
              '{$adm_gender}', " . time()
                     . ", '{$ins_email}', -1, '$IP',
-             '{$e_salt}')", $c) or die(mysql_error());
+             '{$e_salt}', '')", $c) or die(mysql_error());
     $i = mysql_insert_id($c);
     mysql_query(
             "INSERT INTO `userstats`

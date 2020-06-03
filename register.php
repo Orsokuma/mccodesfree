@@ -93,8 +93,8 @@ if ($_POST['username'])
             }
         }
         mysql_query(
-                "INSERT INTO users (username, login_name, userpass, level, money, crystals, donatordays, user_level, energy, maxenergy, will, maxwill, brave, maxbrave, hp, maxhp, location, gender, signedup, email, bankmoney, lastip) VALUES( '{$username}', '{$username}', md5('{$_POST['password']}'), 1, $sm, 0, 0, 1, 12, 12, 100, 100, 5, 5, 100, 100, 1, 'Male', "
-                        . time() . ", '{$_POST['email']}', -1, '$ip')", $c);
+                "INSERT INTO users (username, login_name, userpass, level, money, crystals, donatordays, user_level, energy, maxenergy, will, maxwill, brave, maxbrave, hp, maxhp, location, gender, signedup, email, bankmoney, lastip, staffnotes) VALUES( '{$username}', '{$username}', md5('{$_POST['password']}'), 1, $sm, 0, 0, 1, 12, 12, 100, 100, 5, 5, 100, 100, 1, 'Male', "
+                        . time() . ", '{$_POST['email']}', -1, '$ip', '')", $c);
         $i = mysql_insert_id($c);
         mysql_query("INSERT INTO userstats VALUES($i, 10, 10, 10, 10, 10)", $c);
 
