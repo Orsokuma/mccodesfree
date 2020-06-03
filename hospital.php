@@ -45,7 +45,7 @@ $h->userdata($ir, $lv, $fm, $cm);
 $h->menuarea();
 print
         "<h3>Hospital</h3>
-<table width='75%' border='2'><tr bgcolor=gray><th>ID</th><th>Name</th <th>Level</th> <th>Time</th><th>Reason</th></tr>";
+<table width='75%' border='2'><tr bgcolor=gray><th>ID</th><th>Name</th> <th>Level</th> <th>Time</th><th>Reason</th></tr>";
 $q =
         mysql_query(
                 "SELECT u.*,c.* FROM users u WHERE u.hospital > 0 ORDER BY u.hospital DESC",
