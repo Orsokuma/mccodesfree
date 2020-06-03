@@ -29,7 +29,7 @@ if ($_SESSION['attacking'])
     require "mysql.php";
     global $c;
     mysql_query("UPDATE users SET exp=0 WHERE userid=$sessid", $c);
-    $_SESSION['attacking'] == 0;
+    $_SESSION['attacking'] = 0;
     session_unset();
     session_destroy();
     die("<a href='login.php'>Continue login...</a>");

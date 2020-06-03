@@ -44,7 +44,7 @@ $lv = date('F j, Y, g:i a', $ir['laston']);
 $h->userdata($ir, $lv, $fm, $cm, 0);
 $h->menuarea();
 
-$_GET['ID'] == abs((int) $_GET['ID']);
+$_GET['ID'] = abs((int) $_GET['ID']);
 $_SESSION['attacking'] = 0;
 $od = mysql_query("SELECT * FROM users WHERE userid={$_GET['ID']}", $c);
 if (mysql_num_rows($od))

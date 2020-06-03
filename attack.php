@@ -42,7 +42,7 @@ $fm = money_formatter($ir['money']);
 $cm = money_formatter($ir['crystals'], '');
 $lv = date('F j, Y, g:i a', $ir['laston']);
 $h->userdata($ir, $lv, $fm, $cm, 0);
-$_GET['ID'] == (int) $_GET['ID'];
+$_GET['ID'] = (int) $_GET['ID'];
 if (!$_GET['ID'])
 {
     print "<span style='color:red;'>WTF you doing, bro?</span></b>";
