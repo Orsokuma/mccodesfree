@@ -522,7 +522,7 @@ function new_user_submit()
                     strip_tags(stripslashes($_POST['login_name'])), $c);
     $password = stripslashes($_POST['userpass']);
     $salt = generate_pass_salt();
-    $enc_psw = encode_password($password, $salt, false);
+    $enc_psw = encode_password($password, $salt);
     $i_salt = mysql_real_escape_string($salt, $c);
     $i_encpsw = mysql_real_escape_string($enc_psw, $c);
     $email =
@@ -925,8 +925,8 @@ function new_stock_form()
     print
             "<h3>Adding an item to a shop</h3>
 <form action='new_staff.php?action=newstocksub' method='post'>
-Shop: " . shop_dropdown($c, "shop") . "<br />
-Item: " . item_dropdown($c, "item")
+Shop: " . shop_dropdown($c) . "<br />
+Item: " . item_dropdown($c)
                     . "<br />
 <input type='submit' value='Add Item To Shop' /></form>";
 }
