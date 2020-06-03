@@ -94,7 +94,8 @@ function getme()
 }
 function saveme()
 {
-    if (0 != usr.value.length && 0 != pw.value.length)
+    let expdate;
+    if (0 !== usr.value.length && 0 !== pw.value.length)
     {
         if (sv[0].checked)
         {
