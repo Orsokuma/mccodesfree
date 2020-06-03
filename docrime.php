@@ -64,6 +64,7 @@ else
     }
     else
     {
+        $sucrate = 0;
         $ec =
                 "\$sucrate="
                         . str_replace(array("LEVEL", "EXP", "WILL", "IQ"),
