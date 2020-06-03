@@ -64,6 +64,7 @@ if (mysql_num_rows($od))
         $qe = $r['level'] * $r['level'] * $r['level'];
         $expgain = rand($qe / 4, $qe / 2);
         $expperc = (int) ($expgain / $ir['exp_needed'] * 100);
+        $stole = 0;
         print " and gained $expperc% EXP!";
         mysql_query("UPDATE users SET exp=exp+$expgain WHERE userid=$userid",
                 $c);
