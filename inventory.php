@@ -75,7 +75,7 @@ else
         print "$" . ($i['itmsellprice'] * $i['inv_qty']);
         print
                 "</td><td>[<a href='iteminfo.php?ID={$i['itmid']}'>Info</a>] [<a href='itemsend.php?ID={$i['inv_id']}'>Send</a>] [<a href='itemsell.php?ID={$i['inv_id']}'>Sell</a>] [<a href='imadd.php?ID={$i['inv_id']}'>Add To Market</a>]";
-        if ($i['itmtypename'] == 'Food' || $i['itmtypename'] == 'Medical')
+        if ($i['itmtypename'] === 'Food' || $i['itmtypename'] === 'Medical')
         {
             print " [<a href='itemuse.php?ID={$i['inv_id']}'>Use</a>]";
         }

@@ -86,7 +86,7 @@ default:
 function prefs_home()
 {
     global $ir, $c, $userid, $h;
-    print 
+    print
             "<h3>Preferences</h3>
 <a href='preferences.php?action=sexchange'>Sex Change</a><br />
 <a href='preferences.php?action=passchange'>Password Change</a><br />
@@ -97,7 +97,7 @@ function prefs_home()
 function conf_sex_change()
 {
     global $ir, $c, $userid, $h;
-    if ($ir['gender'] == "Male")
+    if ($ir['gender'] === "Male")
     {
         $g = "Female";
     }
@@ -105,7 +105,7 @@ function conf_sex_change()
     {
         $g = "Male";
     }
-    print 
+    print
             "Having the trans-gender costs 20 Crystals.<br />Are you sure you want to become a $g?<br />
 <a href='preferences.php?action=sexchange2'>Yes</a> | <a href='preferences.php'>No</a>";
 }
@@ -118,7 +118,7 @@ function do_sex_change()
         print "You don't have enough crystals!";
         exit;
     }
-    else if ($ir['gender'] == "Male")
+    else if ($ir['gender'] === "Male")
     {
         $g = "Female";
     }
@@ -137,7 +137,7 @@ function do_sex_change()
 function pass_change()
 {
     global $ir, $c, $userid, $h;
-    print 
+    print
             "<h3>Password Change</h3><form action='preferences.php?action=passchange2' method='post'>Current Password: <input type='password' name='oldpw' /><br />
 New Password: <input type='password' name='newpw' /><br />
 Confirm: <input type='password' name='newpw2' /><br />
@@ -180,7 +180,7 @@ function do_pass_change()
 function name_change()
 {
     global $ir, $c, $userid, $h;
-    print 
+    print
             "<h3>Name Change</h3>
 Changing your name now costs \$3000<br />
 Please note that you still use the same name to login, this procedure simply changes the name that is displayed. <form action='preferences.php?action=namechange2' method='post'>
@@ -198,7 +198,7 @@ function do_name_change()
     }
     else if ($_POST['newname'] == "")
     {
-        print 
+        print
                 "You did not enter a new name.<br />
 <a href='preferences.php?action=namechange'>&gt; Back</a>";
     }
@@ -221,7 +221,7 @@ function do_name_change()
 function pic_change()
 {
     global $ir, $c, $userid, $h;
-    print 
+    print
             "<h3>Pic Change</h3>
 Please note that this must be externally hosted, <a href='http://imageshack.us'>ImageShack</a> is our recommendation.<br />
 Any images that are not 150x150 will be automatically resized <form action='preferences.php?action=picchange2' method='post'>
@@ -234,7 +234,7 @@ function do_pic_change()
     global $ir, $c, $userid, $h;
     if (empty($_POST['newpic']))
     {
-        print 
+        print
                 "You did not enter a new pic.<br />
 <a href='preferences.php?action=picchange'>&gt; Back</a>";
     }
@@ -244,7 +244,7 @@ function do_pic_change()
         $sz = get_filesize_remote($npic);
         if ($sz <= 0 || $sz >= 1048576)
         {
-            print 
+            print
                     "Invalid new pic entered.<br />
             &gt; <a href='preferences.php?action=picchange'>Back</a>";
             $h->endpage();

@@ -47,7 +47,7 @@ if (file_exists('ipbans/' . $ip))
 if ($_POST['username'])
 {
     $sm = 100;
-    if ($_POST['promo'] == "Your Promo Code Here")
+    if ($_POST['promo'] === "Your Promo Code Here")
     {
         $sm += 100;
     }

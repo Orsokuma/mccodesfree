@@ -586,7 +586,7 @@ function new_item_submit()
     $itmdesc =
             mysql_real_escape_string(
                     strip_tags(stripslashes($_POST['itmdesc'])), $c);
-    if ($_POST['itmbuyable'] == 'on')
+    if ($_POST['itmbuyable'] === 'on')
     {
         $itmbuy = 1;
     }
@@ -809,7 +809,7 @@ function edit_item_sub()
     $itmdesc =
             mysql_real_escape_string(
                     strip_tags(stripslashes($_POST['itmdesc'])), $c);
-    if ($_POST['itmbuyable'] == 'on')
+    if ($_POST['itmbuyable'] === 'on')
     {
         $itmbuy = 1;
     }
@@ -1235,34 +1235,34 @@ function accept_dp()
     $acc_id = abs((int) $_GET['ID']);
     $q = mysql_query("SELECT * FROM dps_process WHERE dp_id={$acc_id}", $c);
     $r = mysql_fetch_array($q);
-    if ($r['dp_type'] == 'standard')
+    if ($r['dp_type'] === 'standard')
     {
         mysql_query(
                 "UPDATE users u LEFT JOIN userstats us ON u.userid=us.userid SET u.money=u.money+5000,u.crystals=u.crystals+50,
 us.IQ=us.IQ+50,u.donatordays=u.donatordays+30 WHERE u.userid={$r['dp_userid']}",
                 $c);
     }
-    else if ($r['dp_type'] == 'crystals')
+    else if ($r['dp_type'] === 'crystals')
     {
         mysql_query(
                 "UPDATE users u LEFT JOIN userstats us ON u.userid=us.userid SET u.crystals=u.crystals+100,u.donatordays=u.donatordays+30 WHERE u.userid={$r['dp_userid']}",
                 $c);
     }
-    else if ($r['dp_type'] == 'iq')
+    else if ($r['dp_type'] === 'iq')
     {
         mysql_query(
                 "UPDATE users u LEFT JOIN userstats us ON u.userid=us.userid SET
 us.IQ=us.IQ+120,u.donatordays=u.donatordays+30 WHERE u.userid={$r['dp_userid']}",
                 $c);
     }
-    else if ($r['dp_type'] == 'fivedollars')
+    else if ($r['dp_type'] === 'fivedollars')
     {
         mysql_query(
                 "UPDATE users u LEFT JOIN userstats us ON u.userid=us.userid SET u.money=u.money+15000,u.crystals=u.crystals+75,
 us.IQ=us.IQ+80,u.donatordays=u.donatordays+55 WHERE u.userid={$r['dp_userid']}",
                 $c);
     }
-    else if ($r['dp_type'] == 'tendollars')
+    else if ($r['dp_type'] === 'tendollars')
     {
         mysql_query(
                 "UPDATE users u LEFT JOIN userstats us ON u.userid=us.userid SET u.money=u.money+35000,u.crystals=u.crystals+160,

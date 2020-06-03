@@ -56,7 +56,7 @@ What would you like to spend your crystals on?<br />
 }
 else
 {
-    if ($_GET['spend'] == 'refill')
+    if ($_GET['spend'] === 'refill')
     {
         if ($ir['crystals'] < 12)
         {
@@ -74,14 +74,14 @@ else
             print "You have paid 12 crystals to refill your energy bar.";
         }
     }
-    else if ($_GET['spend'] == 'IQ')
+    else if ($_GET['spend'] === 'IQ')
     {
         print
                 "Type in the amount of crystals you want to swap for IQ.<br />
 You have <b>{$ir['crystals']}</b> crystals.<br />
 One crystal = 5 IQ.<form action='crystaltemple.php?spend=IQ2' method='post'><input type='text' name='crystals' /><br /><input type='submit' value='Swap' /></form>";
     }
-    else if ($_GET['spend'] == 'IQ2')
+    else if ($_GET['spend'] === 'IQ2')
     {
         $_POST['crystals'] = (int) $_POST['crystals'];
         if ($_POST['crystals'] <= 0 || $_POST['crystals'] > $ir['crystals'])
@@ -102,14 +102,14 @@ One crystal = 5 IQ.<form action='crystaltemple.php?spend=IQ2' method='post'><inp
             print "You traded {$_POST['crystals']} crystals for $iqgain IQ.";
         }
     }
-    else if ($_GET['spend'] == 'money')
+    else if ($_GET['spend'] === 'money')
     {
         print
                 "Type in the amount of crystals you want to swap for \$\$\$.<br />
 You have <b>{$ir['crystals']}</b> crystals.<br />
 One crystal = \$200.<form action='crystaltemple.php?spend=money2' method='post'><input type='text' name='crystals' /><br /><input type='submit' value='Swap' /></form>";
     }
-    else if ($_GET['spend'] == 'money2')
+    else if ($_GET['spend'] === 'money2')
     {
         $_POST['crystals'] = (int) $_POST['crystals'];
         if ($_POST['crystals'] <= 0 || $_POST['crystals'] > $ir['crystals'])

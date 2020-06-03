@@ -62,7 +62,7 @@ else
     else
     {
         $r = mysql_fetch_array($i);
-        if ($r['itmtypename'] == 'Food')
+        if ($r['itmtypename'] === 'Food')
         {
             $f =
                     mysql_query(
@@ -80,7 +80,7 @@ else
             print
                     "You cram a {$r['itmname']} into your mouth. You feel a bit of energy coming back to you.";
         }
-        else if ($r['itmtypename'] == 'Medical')
+        else if ($r['itmtypename'] === 'Medical')
         {
             $f =
                     mysql_query(
@@ -94,13 +94,13 @@ else
             mysql_query(
                     "UPDATE users SET hp=hp+{$fr['health']} WHERE userid=$userid");
             mysql_query("UPDATE users SET hp=maxhp WHERE hp > maxhp");
-            if ($r['itmname'] == 'Full Restore')
+            if ($r['itmname'] === 'Full Restore')
             {
                 mysql_query(
                         "UPDATE users SET energy=maxenergy,will=maxwill,brave=maxbrave WHERE userid=$userid",
                         $c);
             }
-            if ($r['itmname'] == 'Will Potion')
+            if ($r['itmname'] === 'Will Potion')
             {
                 mysql_query(
                         "UPDATE users SET will=maxwill WHERE userid=$userid",

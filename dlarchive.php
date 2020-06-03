@@ -28,7 +28,7 @@ if (!$_SESSION['userid'])
     exit;
 }
 $userid = $_SESSION['userid'];
-if ($_GET['a'] == 'inbox')
+if ($_GET['a'] === 'inbox')
 {
     // We'll be outputting a PDF
     header('Content-type: text/html');
@@ -60,7 +60,7 @@ if ($_GET['a'] == 'inbox')
     }
     print "</table>";
 }
-else if ($_GET['a'] == 'outbox')
+else if ($_GET['a'] === 'outbox')
 {
     // We'll be outputting a PDF
     header('Content-type: text/html');

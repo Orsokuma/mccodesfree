@@ -45,8 +45,8 @@ $out = "";
 $_GET['times'] = abs((int) $_GET['times']);
 if (isset($_GET['train']))
 {
-    if ($_GET['train'] != "strength" && $_GET['train'] != "agility"
-            && $_GET['train'] != "guard" && $_GET['train'] != "labour")
+    if ($_GET['train'] !== "strength" && $_GET['train'] !== "agility"
+            && $_GET['train'] !== "guard" && $_GET['train'] !== "labour")
     {
         $h->userdata($ir, $lv, $fm, $cm);
         $h->menuarea();
@@ -61,7 +61,7 @@ if (isset($_GET['train']))
                     rand(1, 3) / rand(800, 1000) * rand(800, 1000)
                             * (($ir['will'] + 20) / 150);
             $tgain += $gain;
-            if ($_GET['train'] == "IQ")
+            if ($_GET['train'] === "IQ")
             {
                 $gain /= 100;
             }

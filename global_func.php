@@ -336,7 +336,7 @@ function determine_game_urlbase()
     $turiq = '';
     for ($t = strlen($turi) - 1; $t >= 0; $t--)
     {
-        if ($turi[$t] != '/')
+        if ($turi[$t] !== '/')
         {
             $turiq = $turi[$t] . $turiq;
         }
@@ -346,7 +346,7 @@ function determine_game_urlbase()
         }
     }
     $turiq = '/' . $turiq;
-    if ($turiq == '/')
+    if ($turiq === '/')
     {
         $domain .= substr($turi, 0, -1);
     }
@@ -374,11 +374,11 @@ function get_filesize_remote($url)
         return 0; // no file
     }
     $is_ssl = false;
-    if (substr($url, 0, 7) == 'http://')
+    if (substr($url, 0, 7) === 'http://')
     {
         $port = 80;
     }
-    else if (substr($url, 0, 8) == 'https://' && extension_loaded('openssl'))
+    else if (substr($url, 0, 8) === 'https://' && extension_loaded('openssl'))
     {
         $port = 443;
         $is_ssl = true;
@@ -420,7 +420,7 @@ function get_filesize_remote($url)
     $total_loaded = 0;
     while (!feof($fh) && $line = fgets($fh, 1024))
     {
-        if ($line == "\r\n")
+        if ($line === "\r\n")
         {
             break;
         }

@@ -43,11 +43,11 @@ $cm = money_formatter($ir['crystals'], '');
 $lv = date('F j, Y, g:i a', $ir['laston']);
 $h->userdata($ir, $lv, $fm, $cm);
 $h->menuarea();
-if ($_GET['action'] == "cancel")
+if ($_GET['action'] === "cancel")
 {
     print "You have cancelled your donation. Please donate later...";
 }
-else if ($_GET['action'] == "done")
+else if ($_GET['action'] === "done")
 {
     if (!$_GET['tx'])
     {
@@ -58,11 +58,11 @@ else if ($_GET['action'] == "done")
     mysql_query(
             "INSERT INTO willplogs VALUES(NULL,$userid," . time()
                     . ",'{$quantity}');", $c);
-    if ($_GET['quantity'] == 'one')
+    if ($_GET['quantity'] === 'one')
     {
         $q = 1;
     }
-    else if ($_GET['quantity'] == 'five')
+    else if ($_GET['quantity'] === 'five')
     {
         $q = 5;
     }
@@ -73,7 +73,7 @@ else if ($_GET['action'] == "done")
         exit;
     }
     mysql_query("INSERT INTO inventory VALUES(NULL,34,$userid,$q)", $c);
-    print 
+    print
             "Your will potions have been credited, if you are cheating, we will jail you.";
 }
 $h->endpage();
