@@ -107,13 +107,13 @@ if (mysql_num_rows($od))
                         "INSERT INTO challengesbeaten VALUES ($userid,{$r['userid']})",
                         $c);
                 print
-                        "<br /><br />Congrats, for beating the Challenge Bot {$r['username']}, you have earnt \$$gain!";
+                        "<br /><br />Congrats, for beating the Challenge Bot {$r['username']}, you have earned \$$gain!";
             }
         }
     }
 }
 else
 {
-    print "You beat Mr. non-existant!";
+    print 'You beat Mr. non-existent!';
 }
 $h->endpage();
