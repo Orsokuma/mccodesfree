@@ -79,10 +79,6 @@ else
         {
             print " [<a href='itemuse.php?ID={$i['inv_id']}'>Use</a>]";
         }
-        if ($i['itmname'] == 'Nuclear Bomb')
-        {
-            print " [<a href='nuclearbomb.php'>Use</a>]";
-        }
         print "</td></tr>";
     }
     print "</table>";
