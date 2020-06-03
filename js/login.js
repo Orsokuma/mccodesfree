@@ -26,6 +26,9 @@ function getCookieVal(offset)
         }
     return unescape(document.cookie.substring(offset, endstr));
 }
+/**
+ * @return {string|null}
+ */
 function GetCookie(name)
 {
     let j;
