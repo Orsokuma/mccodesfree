@@ -86,7 +86,7 @@ function hof_level()
 <table width=75%><tr style='background:gray'> <th>Pos</th> <th>User</th> <th>Level</th> </tr>";
     $q =
             mysql_query(
-                    "SELECT u.* FROM users u WHERE u.user_level != 0 ORDER BY level DESC,userid ASC LIMIT 20",
+                    "SELECT u.* FROM users u WHERE u.user_level != 0 ORDER BY level DESC,userid LIMIT 20",
                     $c);
     $p = 0;
     while ($r = mysql_fetch_array($q))
@@ -116,7 +116,7 @@ function hof_money()
 <table width=75%><tr style='background:gray'> <th>Pos</th> <th>User</th> <th>Money</th> </tr>";
     $q =
             mysql_query(
-                    "SELECT u.* FROM users u WHERE u.user_level != 0 ORDER BY money DESC,userid ASC LIMIT 20",
+                    "SELECT u.* FROM users u WHERE u.user_level != 0 ORDER BY money DESC,userid LIMIT 20",
                     $c);
     $p = 0;
     while ($r = mysql_fetch_array($q))
@@ -147,7 +147,7 @@ function hof_crystals()
 <table width=75%><tr style='background:gray'> <th>Pos</th> <th>User</th> <th>Crystals</th> </tr>";
     $q =
             mysql_query(
-                    "SELECT u.* FROM users u WHERE u.user_level != 0 ORDER BY crystals DESC,userid ASC LIMIT 20",
+                    "SELECT u.* FROM users u WHERE u.user_level != 0 ORDER BY crystals DESC,userid LIMIT 20",
                     $c);
     $p = 0;
     while ($r = mysql_fetch_array($q))
@@ -179,7 +179,7 @@ function hof_total()
 <table width=75%><tr style='background:gray'> <th>Pos</th> <th>User</th> </tr>";
     $q =
             mysql_query(
-                    "SELECT u.* FROM users u LEFT JOIN userstats us ON u.userid=us.userid WHERE u.user_level != 0 ORDER BY (us.strength+us.agility+us.guard+us.labour+us.IQ) DESC,u.userid ASC LIMIT 20",
+                    "SELECT u.* FROM users u LEFT JOIN userstats us ON u.userid=us.userid WHERE u.user_level != 0 ORDER BY (us.strength+us.agility+us.guard+us.labour+us.IQ) DESC,u.userid LIMIT 20",
                     $c);
     $p = 0;
     while ($r = mysql_fetch_array($q))
@@ -209,7 +209,7 @@ function hof_strength()
 <table width=75%><tr style='background:gray'> <th>Pos</th> <th>User</th> </tr>";
     $q =
             mysql_query(
-                    "SELECT u.* FROM users u LEFT JOIN userstats us ON u.userid=us.userid WHERE u.user_level != 0 ORDER BY us.strength DESC,u.userid ASC LIMIT 20",
+                    "SELECT u.* FROM users u LEFT JOIN userstats us ON u.userid=us.userid WHERE u.user_level != 0 ORDER BY us.strength DESC,u.userid LIMIT 20",
                     $c);
     $p = 0;
     while ($r = mysql_fetch_array($q))
@@ -239,7 +239,7 @@ function hof_agility()
 <table width=75%><tr style='background:gray'> <th>Pos</th> <th>User</th> </tr>";
     $q =
             mysql_query(
-                    "SELECT u.* FROM users u LEFT JOIN userstats us ON u.userid=us.userid WHERE u.user_level != 0 ORDER BY us.agility DESC,u.userid ASC LIMIT 20",
+                    "SELECT u.* FROM users u LEFT JOIN userstats us ON u.userid=us.userid WHERE u.user_level != 0 ORDER BY us.agility DESC,u.userid LIMIT 20",
                     $c);
     $p = 0;
     while ($r = mysql_fetch_array($q))
@@ -269,7 +269,7 @@ function hof_guard()
 <table width=75%><tr style='background:gray'> <th>Pos</th> <th>User</th> </tr>";
     $q =
             mysql_query(
-                    "SELECT u.* FROM users u LEFT JOIN userstats us ON u.userid=us.userid WHERE u.user_level != 0 ORDER BY us.guard DESC,u.userid ASC LIMIT 20",
+                    "SELECT u.* FROM users u LEFT JOIN userstats us ON u.userid=us.userid WHERE u.user_level != 0 ORDER BY us.guard DESC,u.userid LIMIT 20",
                     $c);
     $p = 0;
     while ($r = mysql_fetch_array($q))
@@ -299,7 +299,7 @@ function hof_labour()
 <table width=75%><tr style='background:gray'> <th>Pos</th> <th>User</th> </tr>";
     $q =
             mysql_query(
-                    "SELECT u.* FROM users u LEFT JOIN userstats us ON u.userid=us.userid WHERE u.user_level != 0 ORDER BY us.labour DESC,u.userid ASC LIMIT 20",
+                    "SELECT u.* FROM users u LEFT JOIN userstats us ON u.userid=us.userid WHERE u.user_level != 0 ORDER BY us.labour DESC,u.userid LIMIT 20",
                     $c);
     $p = 0;
     while ($r = mysql_fetch_array($q))
@@ -329,7 +329,7 @@ function hof_iq()
 <table width=75%><tr style='background:gray'> <th>Pos</th> <th>User</th> </tr>";
     $q =
             mysql_query(
-                    "SELECT u.* FROM users u LEFT JOIN userstats us ON u.userid=us.userid WHERE u.user_level != 0 ORDER BY us.IQ DESC,u.userid ASC LIMIT 20",
+                    "SELECT u.* FROM users u LEFT JOIN userstats us ON u.userid=us.userid WHERE u.user_level != 0 ORDER BY us.IQ DESC,u.userid LIMIT 20",
                     $c);
     $p = 0;
     while ($r = mysql_fetch_array($q))

@@ -82,7 +82,7 @@ if (!$ir['hospital'])
         $q =
                 mysql_query(
                         "SELECT * FROM users WHERE laston > " . (time() - 900)
-                                . " AND user_level>1 ORDER BY userid ASC", $c);
+                                . " AND user_level>1 ORDER BY userid ", $c);
         while ($r = mysql_fetch_array($q))
         {
             $la = time() - $r['laston'];
@@ -179,7 +179,7 @@ else
         $q =
                 mysql_query(
                         "SELECT * FROM users WHERE laston>(" . time()
-                                . "-15*60) AND user_level>1 ORDER BY userid ASC",
+                                . "-15*60) AND user_level>1 ORDER BY userid ",
                         $c);
         while ($r = mysql_fetch_array($q))
         {

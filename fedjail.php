@@ -45,7 +45,7 @@ $h->userdata($ir, $lv, $fm, $cm);
 $h->menuarea();
 $q =
         mysql_query(
-                "SELECT f.*,u.username,u2.username as jailer FROM fedjail f LEFT JOIN users u ON f.fed_userid=u.userid LEFT JOIN users u2 ON f.fed_jailedby=u2.userid ORDER BY f.fed_days ASC",
+                "SELECT f.*,u.username,u2.username as jailer FROM fedjail f LEFT JOIN users u ON f.fed_userid=u.userid LEFT JOIN users u2 ON f.fed_jailedby=u2.userid ORDER BY f.fed_days ",
                 $c);
 print
         "<b>Federal Jail</b><br />
@@ -60,7 +60,7 @@ while ($r = mysql_fetch_array($q))
 print "</table>";
 $q =
         mysql_query(
-                "SELECT * FROM users WHERE mailban>0 ORDER BY mailban ASC",
+                "SELECT * FROM users WHERE mailban>0 ORDER BY mailban ",
                 $c);
 print
         "<b>Mail Bann</b></center><br />

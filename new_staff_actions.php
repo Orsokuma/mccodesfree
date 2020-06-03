@@ -1359,7 +1359,7 @@ function staff_list()
 <table width=80%><tr style='background:gray'> <th>User</th> <th>Online?</th> <th>Links</th> </tr>";
     $q =
             mysql_query(
-                    "SELECT * FROM users WHERE user_level=2 ORDER BY userid ASC",
+                    "SELECT * FROM users WHERE user_level=2 ORDER BY userid ",
                     $c);
     while ($r = mysql_fetch_array($q))
     {
@@ -1380,7 +1380,7 @@ function staff_list()
 <table width=80%><tr style='background:gray'> <th>User</th> <th>Online?</th> <th>Links</th> </tr>";
     $q =
             mysql_query(
-                    "SELECT * FROM users WHERE user_level=3 ORDER BY userid ASC",
+                    "SELECT * FROM users WHERE user_level=3 ORDER BY userid ",
                     $c);
     while ($r = mysql_fetch_array($q))
     {
@@ -1401,7 +1401,7 @@ function staff_list()
 <table width=80%><tr style='background:gray'> <th>User</th> <th>Online?</th> <th>Links</th> </tr>";
     $q =
             mysql_query(
-                    "SELECT * FROM users WHERE user_level=4 ORDER BY userid ASC",
+                    "SELECT * FROM users WHERE user_level=4 ORDER BY userid ",
                     $c);
     while ($r = mysql_fetch_array($q))
     {
@@ -1422,7 +1422,7 @@ function staff_list()
 <table width=80%><tr style='background:gray'> <th>User</th> <th>Online?</th> <th>Links</th> </tr>";
     $q =
             mysql_query(
-                    "SELECT * FROM users WHERE user_level=5 ORDER BY userid ASC",
+                    "SELECT * FROM users WHERE user_level=5 ORDER BY userid ",
                     $c);
     while ($r = mysql_fetch_array($q))
     {
@@ -1648,9 +1648,6 @@ function admin_user_changeid()
                 $c);
         mysql_query(
                 "UPDATE adminlogs SET adUSER=$new_id WHERE adUSER = $user",
-                $c);
-        mysql_query(
-                "UPDATE applications SET appUSER=$new_id WHERE appUSER = $user",
                 $c);
         mysql_query(
                 "UPDATE attacklogs SET attacker=$new_id WHERE attacker = $user",

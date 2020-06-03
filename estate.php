@@ -97,7 +97,7 @@ The houses you can buy are listed below. Click a house to buy it.<br />";
     }
     $hq =
             mysql_query(
-                    "SELECT * FROM houses WHERE hWILL>{$ir['maxwill']} ORDER BY hWILL ASC",
+                    "SELECT * FROM houses WHERE hWILL>{$ir['maxwill']} ORDER BY hWILL ",
                     $c);
     while ($r = mysql_fetch_array($hq))
     {

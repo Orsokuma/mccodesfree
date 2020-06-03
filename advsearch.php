@@ -97,7 +97,7 @@ Gender: <select name="gender" >
 House: <select name=house >
 <option value=0 selected>Any House</option>
 EOF;
-    $q = mysql_query("SELECT * FROM houses ORDER BY hWILL ASC", $c);
+    $q = mysql_query("SELECT * FROM houses ORDER BY hWILL ", $c);
     while ($r = mysql_fetch_array($q))
     {
         print "\n<option value='{$r['hWILL']}'>{$r['hNAME']}</option>";

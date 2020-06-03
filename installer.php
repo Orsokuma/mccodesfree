@@ -547,13 +547,13 @@ function valid_email($email)
     for ($i = 0; $i < sizeof($local_array); $i++)
     {
         if (preg_match(
-                "/^(([A-Za-z0-9!#$%&'*+\\/=?^_`{|}~-][A-Za-z0-9!#$%&'*+\\/=?^_`{|}~\.-]{0,63})|(\"[^(\\|\")]{0,62}\"))$/s",
+                "/^(([A-Za-z0-9!#$%&'*+\\/=?^_`{|}~-][A-Za-z0-9!#$%&'*+\\/=?^_`{|}~.-]{0,63})|(\"[^(|\")]{0,62}\"))$/s",
                 $local_array[$i]) == 0)
         {
             return false;
         }
     }
-    if (preg_match("/^\[?[0-9\.]+\]?$/s", $email_array[1]) == 0)
+    if (preg_match("/^\[?[0-9.]+]?$/s", $email_array[1]) == 0)
     { // Check if domain is IP. If not, it should be valid domain name
         $domain_array = explode(".", $email_array[1]);
         if (sizeof($domain_array) < 2)

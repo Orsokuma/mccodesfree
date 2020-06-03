@@ -99,7 +99,7 @@ Most liked: [";
 <table width=90%><tr style='background:gray'> <th>ID</th> <th>Name</th> <th>Mail</th> <th>Send Cash</th> <th>Remove</th> <th>Comment</th> <th>Change Comment</th> <th>Online?</th></tr>";
     $q =
             mysql_query(
-                    "SELECT fl.*,u.* FROM friendslist fl LEFT JOIN users u ON fl.fl_ADDED=u.userid WHERE fl.fl_ADDER=$userid ORDER BY u.username ASC",
+                    "SELECT fl.*,u.* FROM friendslist fl LEFT JOIN users u ON fl.fl_ADDED=u.userid WHERE fl.fl_ADDER=$userid ORDER BY u.username ",
                     $c);
     while ($r = mysql_fetch_array($q))
     {

@@ -50,7 +50,7 @@ $q =
  				 `user_level`
  				 FROM `users`
  				 WHERE `user_level` IN(2, 3, 4, 5)
- 				 ORDER BY `userid` ASC",$c);
+ 				 ORDER BY `userid` ",$c);
 while ($r = mysql_fetch_assoc($q))
 {
     $staff[$r['userid']] = $r;

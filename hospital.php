@@ -48,7 +48,7 @@ print
 <table width='75%' border='2'><tr bgcolor=gray><th>ID</th><th>Name</th> <th>Level</th> <th>Time</th><th>Reason</th></tr>";
 $q =
         mysql_query(
-                "SELECT u.*,c.* FROM users u WHERE u.hospital > 0 ORDER BY u.hospital DESC",
+                "SELECT * FROM users WHERE hospital > 0 ORDER BY hospital DESC",
                 $c);
 while ($r = mysql_fetch_array($q))
 {

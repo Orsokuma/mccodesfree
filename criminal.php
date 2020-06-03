@@ -43,7 +43,7 @@ $cm = money_formatter($ir['crystals'], '');
 $lv = date('F j, Y, g:i a', $ir['laston']);
 $h->userdata($ir, $lv, $fm, $cm);
 $h->menuarea();
-$q = mysql_query("SELECT * FROM crimegroups ORDER by cgORDER ASC", $c);
+$q = mysql_query("SELECT * FROM crimegroups ORDER by cgORDER ", $c);
 print
         "<b>Criminal Centre</b><br />
 <table style='width:75%;'><tr><th>Crime</th><th>Cost</th><th>Do</th></tr>";

@@ -74,7 +74,7 @@ if (isset($_GET['train']))
                     "UPDATE userstats SET $st=$st+" . $gain
                             . " WHERE userid=$userid", $c)
                     or die(
-                            "UPDATE userstats SET $st=$st+$gain,energy=energy-1,exp=exp+$egain WHERE userid=$userid<br />"
+                            "UPDATE userstats SET $st=$st+$gain WHERE userid=$userid<br />"
                                     . mysql_error());
             $wu = (int) (rand(1, 3));
             if ($ir['will'] >= $wu)

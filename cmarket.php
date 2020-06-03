@@ -73,7 +73,7 @@ Viewing all listings...
 <table style='width:75%;'> <tr style='background:gray'> <th>Adder</th> <th>Qty</th> <th>Price each</th> <th>Price total</th> <th>Links</th> </tr>";
     $q =
             mysql_query(
-                    "SELECT cm.*, u.* FROM crystalmarket cm LEFT JOIN users u ON u.userid=cm.cmADDER ORDER BY cmPRICE/cmQTY ASC",
+                    "SELECT cm.*, u.* FROM crystalmarket cm LEFT JOIN users u ON u.userid=cm.cmADDER ORDER BY cmPRICE/cmQTY ",
                     $c);
     while ($r = mysql_fetch_array($q))
     {
