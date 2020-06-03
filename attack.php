@@ -208,6 +208,7 @@ if ($_GET['wepid'])
         else
         {
             $cnt = 0;
+            $enweps = [];
             while ($r = mysql_fetch_array($eq))
             {
                 $enweps[] = $r;
