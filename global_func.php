@@ -223,12 +223,6 @@ function event_add($userid, $text, $connection)
     return 1;
 }
 
-function mysql_escape($str)
-{
-    global $c;
-    return mysql_real_escape_string($str, $c);
-}
-
 function check_level()
 {
     global $ir, $c, $userid;
