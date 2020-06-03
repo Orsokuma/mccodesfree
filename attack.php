@@ -281,9 +281,6 @@ else if ($youdata['location'] != $odata['location'])
     $h->endpage();
     exit;
 }
-else
-{
-}
 print "</td></tr>";
 if ($youdata['hp'] <= 0 || $odata['hp'] <= 0)
 {
