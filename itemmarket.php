@@ -69,7 +69,7 @@ default:
 
 function imarket_index()
 {
-    global $ir, $c, $userid, $h;
+    global $c, $userid;
     print
             "Viewing all listings...
 <table width=75%> <tr style='background:gray'> <th>Adder</th> <th>Item</th> <th>Price</th> <th>Links</th> </tr>";
@@ -184,7 +184,7 @@ function item_buy()
 
 function item_gift1()
 {
-    global $ir, $c, $userid, $h;
+    global $ir, $c, $h;
     $q =
             mysql_query(
                     "SELECT * FROM itemmarket im LEFT JOIN items i ON i.itmid=im.imITEM WHERE imID={$_GET['ID']}",

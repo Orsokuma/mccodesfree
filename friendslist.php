@@ -69,7 +69,7 @@ default:
 
 function friends_list()
 {
-    global $ir, $c, $userid;
+    global $c, $userid;
     print
             "<a href='friendslist.php?action=add'>&gt; Add a Friend</a><br />
 These are the people on your friends list. ";
@@ -129,7 +129,7 @@ Most liked: [";
 
 function add_friend()
 {
-    global $ir, $c, $userid;
+    global $c, $userid;
     $_POST['ID'] = abs((int) $_POST['ID']);
     $_POST['comment'] =
             mysql_real_escape_string(
@@ -187,7 +187,7 @@ Comment (optional): <br />
 
 function remove_friend()
 {
-    global $ir, $c, $userid;
+    global $c, $userid;
     mysql_query(
             "DELETE FROM friendslist WHERE fl_ID={$_GET['f']} AND fl_ADDER=$userid",
             $c);
@@ -198,7 +198,7 @@ function remove_friend()
 
 function change_comment()
 {
-    global $ir, $c, $userid;
+    global $c, $userid;
     $_POST['f'] = abs((int) $_POST['f']);
     $_POST['comment'] =
             mysql_real_escape_string(

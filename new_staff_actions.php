@@ -9,7 +9,7 @@ if (!defined('IN_STAFF'))
 
 function fed_user_form()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     print
             "<h3>Jailing User</h3>
 The user will be put in fed jail and will be unable to do anything in the game.<br />
@@ -23,7 +23,7 @@ Reason: <input type='text' name='reason' /><br />
 
 function fed_user_submit()
 {
-    global $ir, $c, $h, $userid;
+    global $ir, $c, $userid;
     $ins_user = abs((int) $_POST['user']);
     $ins_days = abs((int) $_POST['days']);
     $ins_reason =
@@ -43,8 +43,7 @@ function fed_user_submit()
     }
     else
     {
-        $re =
-                mysql_query(
+        mysql_query(
                         "UPDATE users SET fedjail=1 WHERE userid={$ins_user}",
                         $c);
         if (mysql_affected_rows($c))
@@ -62,7 +61,7 @@ function fed_user_submit()
 
 function unfed_user_form()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     print
             "<h3>Unjailing User</h3>
 The user will be taken out of fed jail.<br />
@@ -74,7 +73,7 @@ User: " . fed_user_dropdown($c, 'user')
 
 function unfed_user_submit()
 {
-    global $ir, $c, $h, $userid;
+    global $c, $userid;
     $ins_user = abs((int) $_POST['user']);
     mysql_query("UPDATE users SET fedjail=0 WHERE userid={$ins_user}", $c);
     mysql_query("DELETE FROM fedjail WHERE fed_userid={$ins_user}", $c);
@@ -86,7 +85,7 @@ function unfed_user_submit()
 
 function view_attack_logs()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     print
             "<h3>Attack Logs</h3>
 <table width=75%><tr style='background:gray'><th>Time</th><th>Detail</th></tr>";
@@ -102,7 +101,6 @@ function view_attack_logs()
 
 function ip_search_form()
 {
-    global $ir, $c, $h, $userid;
     print
             "<h3>IP Search</h3>
 <form action='new_staff.php?action=ipsub' method='post'>
@@ -112,7 +110,7 @@ IP: <input type='text' name='ip' value='...' /><br />
 
 function ip_search_submit()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     $disp_ip =
             htmlentities(stripslashes($_POST['ip']), ENT_QUOTES, 'ISO-8859-1');
     $mysql_ip = mysql_real_escape_string(stripslashes($_POST['ip']), $c);
@@ -139,7 +137,7 @@ Reason: <input type='text' name='reason' value='Same IP users, Mail fedjail@mono
 
 function mass_jail()
 {
-    global $ir, $c, $h, $userid;
+    global $ir, $c, $userid;
     $ids = explode(",", $_POST['ids']);
     $ins_days = abs((int) $_POST['days']);
     $ins_reason =
@@ -163,8 +161,7 @@ function mass_jail()
             }
             else
             {
-                $re =
-                        mysql_query(
+                mysql_query(
                                 "UPDATE users SET fedjail=1 WHERE userid={$id}",
                                 $c);
                 if (mysql_affected_rows($c))
@@ -185,7 +182,7 @@ function mass_jail()
 
 function view_itm_logs()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     print
             "<h3>Item Xfer Logs</h3>
 <table width=75%><tr style='background:gray'><th>Time</th><th>Detail</th></tr>";
@@ -208,7 +205,7 @@ function view_itm_logs()
 
 function view_cash_logs()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     print
             "<h3>Cash Xfer Logs</h3>
 <table width=75% border=1> <tr style='background:gray'> <th>ID</th> <th>Time</th> <th>User From</th> <th>User To</th> <th>Multi?</th> <th>Amount</th> <th>&nbsp;</th> </tr>";
@@ -236,7 +233,7 @@ function view_cash_logs()
 
 function give_item_form()
 {
-    global $ir, $c;
+    global $c;
     print
             "<h3>Giving Item To User</h3>
 <form action='new_staff.php?action=giveitemsub' method='post'>
@@ -249,7 +246,7 @@ Quantity: <input type='text' name='qty' value='1' /><br />
 
 function give_item_submit()
 {
-    global $ir, $c;
+    global $c;
     $_POST['item'] = abs(@intval($_POST['item']));
     $_POST['user'] = abs(@intval($_POST['user']));
     $_POST['qty'] = abs(@intval($_POST['qty']));
@@ -271,7 +268,7 @@ function give_item_submit()
 
 function mail_user_form()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     print
             "<h3>Mail Banning User</h3>
 The user will be banned from the mail system.<br />
@@ -285,7 +282,7 @@ Reason: <input type='text' name='reason' /><br />
 
 function mail_user_submit()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     $ins_user = abs((int) $_POST['user']);
     $ins_days = abs((int) $_POST['days']);
     $ins_reason =
@@ -293,8 +290,7 @@ function mail_user_submit()
                     htmlentities(stripslashes($_POST['reason']), ENT_QUOTES,
                             'ISO-8859-1'), $c);
     $log_reason = stripslashes($_POST['reason']);
-    $re =
-            mysql_query(
+    mysql_query(
                     "UPDATE users SET mailban={$ins_days},mb_reason='{$ins_reason}' WHERE userid={$ins_user}",
                     $c);
     event_add($ins_user,
@@ -305,7 +301,7 @@ function mail_user_submit()
 
 function inv_user_begin()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
 
     print
             "<h3>Viewing User Inventory</h3>
@@ -318,7 +314,7 @@ User: " . user_dropdown($c, 'user')
 
 function inv_user_view()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     $test_user = abs((int) $_POST['user']);
     $inv =
             mysql_query(
@@ -354,7 +350,7 @@ function inv_user_view()
 
 function inv_delete()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     $del_id = abs((int) $_GET['ID']);
     mysql_query("DELETE FROM inventory WHERE inv_id={$del_id}", $c);
     print "Item deleted from inventory.";
@@ -362,7 +358,7 @@ function inv_delete()
 
 function credit_user_form()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     print
             "<h3>Crediting User</h3>
 You can give a user money/crystals.<br />
@@ -375,7 +371,7 @@ Money: <input type='text' name='money' /> Crystals: <input type='text' name='cry
 
 function credit_user_submit()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     $_POST['money'] = (int) $_POST['money'];
     $_POST['crystals'] = (int) $_POST['crystals'];
     $cred_user = abs((int) $_POST['user']);
@@ -387,7 +383,7 @@ function credit_user_submit()
 
 function view_mail_logs()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     $_GET['st'] = abs((int) $_GET['st']);
     $rpp = 100;
 
@@ -427,7 +423,7 @@ function view_mail_logs()
 
 function reports_view()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     print
             "<h3>Player Reports</h3>
 <table width=80%><tr style='background:gray'><th>Reporter</th> <th>Offender</th> <th>What they did</th> <th>&nbsp;</th> </tr>";
@@ -452,7 +448,7 @@ function reports_view()
 
 function report_clear()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     $_GET['ID'] = abs((int) $_GET['ID']);
     mysql_query("DELETE FROM preports WHERE prID={$_GET['ID']}", $c);
     print
@@ -464,7 +460,6 @@ function report_clear()
 
 function new_user_form()
 {
-    global $ir, $c;
     print
         "Adding a new user.<br />
 <form action='new_staff.php?action=newusersub' method='post'>
@@ -491,7 +486,7 @@ IQ: <input type='text' name='labour' value='10' /><br />
 
 function new_user_submit()
 {
-    global $h, $ir, $c, $userid;
+    global $h, $c;
     if (!isset($_POST['username']) || !isset($_POST['login_name'])
             || !isset($_POST['userpass']))
     {
@@ -549,7 +544,7 @@ function new_user_submit()
 
 function new_item_form()
 {
-    global $ir, $c;
+    global $c;
     print
             "<h3>Adding an item to the game</h3><form action='new_staff.php?action=newitemsub' method='post'>
 Item Name: <input type='text' name='itmname' value='' /><br />
@@ -569,7 +564,7 @@ Damage Off (armor only): <input type='text' name='Defence' value='10' /><br />
 
 function new_item_submit()
 {
-    global $ir, $c, $h;
+    global $c, $h;
     if (!isset($_POST['itmname']) || !isset($_POST['itmdesc'])
             || !isset($_POST['itmtype']) || !isset($_POST['itmbuyprice'])
             || !isset($_POST['itmsellprice']))
@@ -646,7 +641,7 @@ function new_item_submit()
 
 function kill_item_form()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
 
     print
             "<h3>Deleting Item</h3>
@@ -659,7 +654,7 @@ Item: " . item_dropdown($c, 'item')
 
 function kill_item_submit()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     $_POST['item'] = abs(@intval($_POST['item']));
     $d = mysql_query("SELECT * FROM items WHERE itmid={$_POST['item']}", $c);
     if (mysql_num_rows($d) == 0)
@@ -681,7 +676,7 @@ function kill_item_submit()
 
 function edit_item_begin()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     print
             "<h3>Editing Item</h3>
 You can edit any aspect of this item.<br />
@@ -693,7 +688,7 @@ Item: " . item_dropdown($c, 'item')
 
 function edit_item_form()
 {
-    global $ir, $c, $h;
+    global $c;
     $_POST['item'] = abs(@intval($_POST['item']));
     $d = mysql_query("SELECT * FROM items WHERE itmid={$_POST['item']}", $c);
     if (mysql_num_rows($d) == 0)
@@ -779,7 +774,7 @@ Damage Off (armor only): <input type='text' name='Defence' value='$def' /><br />
 
 function edit_item_sub()
 {
-    global $ir, $c, $h, $userid;
+    global $c, $h;
 
     if (!isset($_POST['itmname']) || !isset($_POST['itmdesc'])
             || !isset($_POST['itmtype']) || !isset($_POST['itmbuyprice'])
@@ -863,7 +858,6 @@ function edit_item_sub()
     if ($_POST['itmtype'] == 7)
     {
         $stat = abs(@intval($_POST['Defence']));
-        $i = mysql_insert_id();
         mysql_query("INSERT INTO armour VALUES({$itmid},{$stat})", $c)
                 or die(mysql_error());
     }
@@ -872,7 +866,7 @@ function edit_item_sub()
 
 function new_shop_form()
 {
-    global $ir, $c, $h;
+    global $c;
     print
             "<h3>Adding a New Shop</h3>
 <form action='new_staff.php?action=newshopsub' method='post'>
@@ -885,7 +879,7 @@ Shop Location: " . location_dropdown($c, "sl")
 
 function new_shop_submit()
 {
-    global $ir, $c, $h;
+    global $c, $h;
     if (!isset($_POST['sn']) || !isset($_POST['sd']))
     {
         print
@@ -921,7 +915,7 @@ function new_shop_submit()
 
 function new_stock_form()
 {
-    global $ir, $c, $h;
+    global $c;
     print
             "<h3>Adding an item to a shop</h3>
 <form action='new_staff.php?action=newstocksub' method='post'>
@@ -933,7 +927,7 @@ Item: " . item_dropdown($c)
 
 function new_stock_submit()
 {
-    global $ir, $c, $h;
+    global $c, $h;
     $shop = abs(@intval($_POST['shop']));
     $item = abs(@intval($_POST['item']));
     // Verify details
@@ -967,7 +961,7 @@ function new_stock_submit()
 
 function edit_user_begin()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     print
             "<h3>Editing User</h3>
 You can edit any aspect of this user. <br />
@@ -983,7 +977,7 @@ User: <input type='text' name='user' value='0' /><br />
 
 function edit_user_form()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     $user = abs(@intval($_POST['user']));
     $d =
             mysql_query(
@@ -1028,7 +1022,7 @@ IQ: <input type='text' name='IQ' value='{$itemi['IQ']}' /><br />
 function edit_user_sub()
 {
 
-    global $ir, $c, $h, $userid;
+    global $c, $h;
     $go = 0;
     $user = abs(@intval($_POST['userid']));
     if (!isset($_POST['level']))
@@ -1116,7 +1110,7 @@ function edit_user_sub()
         //check for username usage
         $u =
                 mysql_query(
-                        "SELECT * FROM users WHERE username='{$username}' and userid != {$userid}",
+                        "SELECT * FROM users WHERE username='{$username}' and userid != {$user}",
                         $c);
         if (mysql_num_rows($u) != 0)
         {
@@ -1126,7 +1120,7 @@ function edit_user_sub()
             $h->endpage();
             exit;
         }
-        $oq = mysql_query("SELECT * FROM users WHERE userid={$userid}", $c);
+        $oq = mysql_query("SELECT * FROM users WHERE userid={$user}", $c);
         if (mysql_num_rows($oq) == 0)
         {
             print 'That user doesn\'t exist.';
@@ -1135,7 +1129,6 @@ function edit_user_sub()
             $h->endpage();
             exit;
         }
-        $rm = mysql_fetch_array($oq);
         $energy = 10 + $_POST['level'] * 2;
         $nerve = 3 + $_POST['level'] * 2;
         $hp = 50 + $_POST['level'] * 50;
@@ -1145,10 +1138,10 @@ function edit_user_sub()
                 maxbrave=$nerve, maxenergy=$energy, hp=$hp, maxhp=$hp, hospital={$_POST['hospital']},
                 duties='{$duties}', staffnotes='{$staffnotes}', mailban={$_POST['mailban']},
                 mb_reason='{$mb_reason}', hospreason='{$hospreason}',
-                login_name='{$loginname}' WHERE userid={$userid}", $c);
+                login_name='{$loginname}' WHERE userid={$user}", $c);
         mysql_query(
                 "UPDATE userstats SET strength={$_POST['strength']}, agility={$_POST['agility']},
-                guard={$_POST['guard']}, labour={$_POST['labour']}, IQ={$_POST['IQ']} WHERE userid={$userid}",
+                guard={$_POST['guard']}, labour={$_POST['labour']}, IQ={$_POST['IQ']} WHERE userid={$user}",
                 $c);
 
         print "User edited....";
@@ -1158,7 +1151,7 @@ function edit_user_sub()
 
 function fed_edit_form()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     print
             "<h3>Editing Fedjail Reason</h3>
 You are editing a player's sentence in fed jail.<br />
@@ -1172,7 +1165,7 @@ Reason: <input type='text' name='reason' /><br />
 
 function fed_edit_submit()
 {
-    global $ir, $c, $h, $userid;
+    global $c, $userid;
     $ins_user = abs((int) $_POST['user']);
     $ins_days = abs((int) $_POST['days']);
     $ins_reason =
@@ -1192,7 +1185,7 @@ function fed_edit_submit()
 
 function newspaper_form()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     $q = mysql_query("SELECT * FROM papercontent LIMIT 1", $c);
     $news = htmlentities(mysql_result($q, 0, 0), ENT_QUOTES, 'ISO-8859-1');
     print
@@ -1202,7 +1195,7 @@ function newspaper_form()
 
 function newspaper_submit()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     $news = mysql_real_escape_string(stripslashes($_POST['newspaper']), $c);
     mysql_query("UPDATE papercontent SET content='$news'", $c);
     print "Newspaper updated!";
@@ -1210,7 +1203,7 @@ function newspaper_submit()
 
 function donators_list()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
 
     print
             "<h3>Donations</h3>
@@ -1231,7 +1224,7 @@ This lists the donations that need to be checked with our records and processed.
 
 function accept_dp()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     $acc_id = abs((int) $_GET['ID']);
     $q = mysql_query("SELECT * FROM dps_process WHERE dp_id={$acc_id}", $c);
     $r = mysql_fetch_array($q);
@@ -1280,7 +1273,7 @@ us.IQ=us.IQ+180,u.donatordays=u.donatordays+115 WHERE u.userid={$r['dp_userid']}
 
 function decline_dp()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     $del_id = abs((int) $_GET['ID']);
     $q = mysql_query("SELECT * FROM dps_process WHERE dp_id={$del_id}", $c);
     $r = mysql_fetch_array($q);
@@ -1291,7 +1284,7 @@ function decline_dp()
 
 function give_dp_form()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     print
             "<h3>Giving User DP</h3>
 The user will receive the benefits of one 30-day donator pack.<br />
@@ -1308,7 +1301,7 @@ User: " . user_dropdown($c, 'user')
 
 function give_dp_submit()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
     $dp_user = abs((int) $_POST['user']);
     if ($_POST['type'] == 1)
     {
@@ -1358,7 +1351,7 @@ us.IQ=us.IQ+180,u.donatordays=u.donatordays+115 WHERE u.userid={$dp_user}",
 
 function staff_list()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
 
     print "<h3>Staff Management</h3>";
     print
@@ -1449,7 +1442,7 @@ function staff_list()
 
 function userlevel()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
 
     $_GET['level'] = abs((int) $_GET['level']);
     $_GET['ID'] = abs((int) $_GET['ID']);
@@ -1461,7 +1454,7 @@ function userlevel()
 
 function userlevelform()
 {
-    global $ir, $c, $h, $userid;
+    global $c;
 
     print
             "<h3>User Level Adjust</h3>
@@ -1480,7 +1473,7 @@ User Level:<br />
 
 function massmailer()
 {
-    global $ir, $c, $userid;
+    global $c;
     if ($_POST['text'])
     {
         $_POST['text'] =
@@ -1528,7 +1521,6 @@ OR Send to user level:<br />
 
 function adnewspaper_form()
 {
-    global $ir, $c, $h, $userid;
 
     print
             "<h3>Editing Admin News</h3><form action='new_staff.php?action=subadnews' method='post'>
@@ -1539,7 +1531,6 @@ function adnewspaper_form()
 
 function adnewspaper_submit()
 {
-    global $ir, $c, $h, $userid;
     $l = fopen("admin.news", "w");
     fwrite($l, stripslashes($_POST['newspaper']));
     fclose($l);
@@ -1550,7 +1541,7 @@ function adnewspaper_submit()
 
 function admin_user_record()
 {
-    global $ir, $userid, $admin, $c;
+    global $c;
     $user = abs((int) $_GET['user']);
     if ($user)
     {
@@ -1645,7 +1636,7 @@ EOF;
 
 function admin_user_changeid()
 {
-    global $ir, $userid, $admin, $c;
+    global $c;
     $user = abs((int) $_POST['user']);
     $submit = abs((int) $_POST['submit']);
     $new_id = abs((int) $_POST['newid']);

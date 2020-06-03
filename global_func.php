@@ -251,7 +251,7 @@ hp=hp+50,maxhp=maxhp+50 where userid=$userid", $c);
 
 function get_rank($stat, $mykey)
 {
-    global $ir, $userid, $c;
+    global $userid, $c;
     $q =
             mysql_query(
                     "SELECT count(*) FROM userstats us LEFT JOIN users u ON us.userid=u.userid WHERE us.$mykey > $stat AND us.userid != $userid AND u.user_level != 0",

@@ -66,7 +66,7 @@ default:
 
 function cmarket_index()
 {
-    global $ir, $c, $userid, $h;
+    global $c, $userid;
     print
             "<a href='cmarket.php?action=add'>&gt; Add A Listing</a><br /><br />
 Viewing all listings...
@@ -99,7 +99,7 @@ Viewing all listings...
 
 function crystal_remove()
 {
-    global $ir, $c, $userid, $h;
+    global $c, $userid, $h;
     $q =
             mysql_query(
                     "SELECT * FROM crystalmarket WHERE cmID='{$_GET['ID']}' AND cmADDER=$userid",
@@ -167,7 +167,7 @@ function crystal_buy()
 
 function crystal_add()
 {
-    global $ir, $c, $userid, $h;
+    global $ir, $c, $userid;
     $_POST['amnt'] = abs((int) $_POST['amnt']);
     $_POST['price'] = abs((int) $_POST['price']);
     if ($_POST['amnt'])

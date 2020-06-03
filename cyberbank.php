@@ -92,7 +92,7 @@ else
 
 function index()
 {
-    global $ir, $c, $userid, $h;
+    global $ir;
     print
             "\n<b>You currently have \${$ir['cybermoney']} in the bank.</b><br />
 At the end of each day, your bank balance will go up by 7%.<br />
@@ -108,7 +108,7 @@ Amount: <input type='text' name='withdraw' value='{$ir['cybermoney']}' /><br />
 
 function deposit()
 {
-    global $ir, $c, $userid, $h;
+    global $ir, $c, $userid;
     $_POST['deposit'] = abs((int) $_POST['deposit']);
     if ($_POST['deposit'] > $ir['money'])
     {
@@ -136,7 +136,7 @@ after the fee is taken (\$$fee), \$$gain is added to your account. <br />
 
 function withdraw()
 {
-    global $ir, $c, $userid, $h;
+    global $ir, $c, $userid;
     $_POST['withdraw'] = abs((int) $_POST['withdraw']);
     if ($_POST['withdraw'] > $ir['cybermoney'])
     {

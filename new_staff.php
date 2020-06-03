@@ -148,8 +148,8 @@ else
 
 function admin_index()
 {
-    global $ir, $c, $userid;
-    print 
+    global $ir;
+    print
             "Welcome to the {GAME_NAME} admin panel, <b>{$ir['username']}!</b><br />";
     echo <<<EOF
     <table width='90%' border='1' cellspacing='1' cellpadding='2'>
@@ -289,13 +289,13 @@ EOF;
 
 function sec_index()
 {
-    global $ir, $c;
-    print 
+    global $ir;
+    print
             "Welcome to the {GAME_NAME} secretary panel, {$ir['username']}!<br />
 <h3><font color=red>Secretary Warning: Any sec who uses their powers without reason will be fired. No second chances.</font></h3><br />
 <b>News from the Admins:</b> <br />";
     include "admin.news";
-    print 
+    print
             "<u>Users</u><br />
 [<a href='new_staff.php?action=fedform'>Jail User</a>]<br />
 [<a href='new_staff.php?action=unfedform'>Unjail User</a>]<br />
@@ -318,13 +318,13 @@ function sec_index()
 
 function ass_index()
 {
-    global $ir, $c;
-    print 
+    global $ir;
+    print
             "Welcome to the {GAME_NAME} assistant panel, {$ir['username']}!<br />
 <h3><font color=red>Assistant Warning: Any assistant who uses their powers without reason will be fired. No second chances.</font></h3><br />
 <b>News from the Admins:</b> <br />";
     include "admin.news";
-    print 
+    print
             "<u>Users</u><br />
 [<a href='new_staff.php?action=fedform'>Jail User</a>]<br />
 [<a href='new_staff.php?action=unfedform'>Unjail User</a>]<br />

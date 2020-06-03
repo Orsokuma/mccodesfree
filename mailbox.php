@@ -92,7 +92,7 @@ default:
 
 function mail_inbox()
 {
-    global $ir, $c, $userid, $h;
+    global $c, $userid;
     print
             "Only the last 25 messages sent to you are visible.<br />
 <table width=75% border=2><tr style='background:gray'><th>From</th><th>Subject/Message</th></tr>";
@@ -125,7 +125,7 @@ function mail_inbox()
 
 function mail_outbox()
 {
-    global $ir, $c, $userid, $h;
+    global $c, $userid;
     print
             "Only the last 25 messages you have sent are visible.<br />
 <table width=75% border=2><tr style='background:gray'><th>To</th><th>Subject/Message</th></tr>";
@@ -144,7 +144,7 @@ function mail_outbox()
 
 function mail_compose()
 {
-    global $ir, $c, $userid, $h;
+    global $c, $userid;
     print
             "<form action='mailbox.php?action=send' method='post'>
 <table width=75% border=2> <tr>
@@ -172,7 +172,7 @@ function mail_compose()
 
 function mail_send()
 {
-    global $ir, $c, $userid, $h;
+    global $c, $userid;
     $subj =
             mysql_real_escape_string(
                     str_replace(array("\n"), array("<br />"),
@@ -195,7 +195,7 @@ function mail_send()
 
 function mail_delete()
 {
-    global $ir, $c, $userid, $h;
+    global $c, $userid;
     mysql_query(
             "DELETE FROM mail WHERE mail_id={$_GET['ID']} AND mail_to=$userid",
             $c);
@@ -205,7 +205,6 @@ function mail_delete()
 
 function mail_delall()
 {
-    global $ir, $c, $userid, $h;
     print
             "This will delete all the messages in your inbox.<br />
 There is <b>NO</b> undo, so be sure.<br />
@@ -215,7 +214,7 @@ There is <b>NO</b> undo, so be sure.<br />
 
 function mail_delall2()
 {
-    global $ir, $c, $userid, $h;
+    global $c, $userid;
     mysql_query("DELETE FROM mail WHERE mail_to='$userid'", $c);
     print
             "All " . mysql_affected_rows($c)
@@ -225,7 +224,6 @@ function mail_delall2()
 
 function mail_archive()
 {
-    global $ir, $c, $userid, $h;
     print
             "This tool will download an archive of all your messages.<br />
 <a href='dlarchive.php?a=inbox'>&gt; Download Inbox</a><br />

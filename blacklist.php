@@ -69,7 +69,7 @@ default:
 
 function black_list()
 {
-    global $ir, $c, $userid;
+    global $c, $userid;
     print
             "<a href='blacklist.php?action=add'>&gt; Add an Enemy</a><br />
 These are the people on your black list. ";
@@ -127,7 +127,7 @@ These are the people on your black list. ";
 
 function add_enemy()
 {
-    global $ir, $c, $userid;
+    global $c, $userid;
     $_POST['ID'] = abs((int) $_POST['ID']);
     $_POST['comment'] =
             mysql_real_escape_string(
@@ -185,7 +185,7 @@ Comment (optional): <br />
 
 function remove_enemy()
 {
-    global $ir, $c, $userid;
+    global $c, $userid;
     mysql_query(
             "DELETE FROM blacklist WHERE bl_ID={$_GET['f']} AND bl_ADDER=$userid",
             $c);
@@ -196,7 +196,7 @@ function remove_enemy()
 
 function change_comment()
 {
-    global $ir, $c, $userid;
+    global $c, $userid;
     $_POST['f'] = abs((int) $_POST['f']);
     $_POST['comment'] =
             mysql_real_escape_string(
