@@ -491,7 +491,7 @@ IQ: <input type='text' name='labour' value='10' /><br />
 
 function new_user_submit()
 {
-    global $ir, $c, $userid;
+    global $h, $ir, $c, $userid;
     if (!isset($_POST['username']) || !isset($_POST['login_name'])
             || !isset($_POST['userpass']))
     {
