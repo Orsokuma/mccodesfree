@@ -1,5 +1,8 @@
 {
-    "require": {
-        "dshafik/php7-mysql-shim": "^0.2.0"
-    }
+  "require": {
+    "dshafik/php7-mysql-shim": "^0.2.0"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master"
+  }
 }
