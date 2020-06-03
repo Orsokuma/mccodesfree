@@ -87,7 +87,7 @@ if (mysql_num_rows($od))
                         265 => 15000, 536 => 100000, 720 => 1400000,
                         721 => 1400000, 722 => 1400000, 585 => 5000000,
                         820 => 10000000);
-        if (in_array($r['userid'], $bots))
+        if (in_array($r['userid'], $bots, false))
         {
             $qk =
                     mysql_query(
