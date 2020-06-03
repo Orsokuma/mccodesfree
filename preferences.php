@@ -255,7 +255,8 @@ function do_pic_change()
         {
             echo 'Invalid Image.<br />
         	&gt; <a href="preferences.php?action=picchange">Go Back</a>';
-            die($h->endpage());
+            $h->endpage();
+            die();
         }
         $esc_npic =
                 mysql_real_escape_string(
