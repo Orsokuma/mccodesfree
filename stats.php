@@ -104,7 +104,7 @@ You step into the Statistics Department and login to the service. You see some s
 	</tr>
 	<tr>
 		<td>
-			There are currently $membs {$set['game_name']} players,
+			There are currently $membs {GAME_NAME} players,
                 $male males and $fem females.
         </td>
         <td>
