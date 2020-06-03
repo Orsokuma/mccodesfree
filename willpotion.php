@@ -45,7 +45,7 @@ $h->userdata($ir, $lv, $fm, $cm);
 $h->menuarea();
 $game_url = determine_game_urlbase();
 print
-        <<<EOF
+    <<<EOF
 <h3>Will Potions</h3>
 
 Buy will potions today! They restore 100% will.<br />
@@ -61,7 +61,7 @@ Buy will potions today! They restore 100% will.<br />
 <input type="hidden" name="cn" value="Your Player ID">
 <input type="hidden" name="currency_code" value="USD">
 <input type="hidden" name="tax" value="0">
-<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif"  name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
 </form>
 <b>Buy Five:</b> (\$4.50)<br />
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
@@ -75,7 +75,7 @@ Buy will potions today! They restore 100% will.<br />
 <input type="hidden" name="cn" value="Your Player ID">
 <input type="hidden" name="currency_code" value="USD">
 <input type="hidden" name="tax" value="0">
-<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif"  name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
 </form>
 EOF;
 $h->endpage();

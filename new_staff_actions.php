@@ -466,7 +466,7 @@ function new_user_form()
 {
     global $ir, $c;
     print
-            "Adding a new user.<br />
+        "Adding a new user.<br />
 <form action='new_staff.php?action=newusersub' method='post'>
 Username: <input type='text' name='username' /><br />
 Login Name: <input type='text' name='login_name' /><br />
@@ -477,7 +477,7 @@ Level: <input type='text' name='level' value='1' /><br />
 Money: <input type='text' name='money' value='100' /><br />
 Crystals: <input type='text' name='crystals' value='0' /><br />
 Donator Days: <input type='text' name='donatordays' value='0' /><br />
-Gender: <select name='gender' type='dropdown'><option>Male</option><option>Female</option></select><br />
+Gender: <select name='gender' ><option>Male</option><option>Female</option></select><br />
 <br />
 <b>Stats</b><br />
 Strength: <input type='text' name='strength' value='10' /><br />

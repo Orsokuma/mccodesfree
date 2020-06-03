@@ -45,8 +45,8 @@ $h->userdata($ir, $lv, $fm, $cm);
 $h->menuarea();
 $tresder = (int) rand(100, 999);
 print
-        "<b>You begin exploring the area you're in, you see a bit that interests you.</b><br />
-<table width=75%><tr height=100><td valign=top>
+    "<b>You begin exploring the area you're in, you see a bit that interests you.</b><br />
+<<table width=75%><tr ><td valign=top>
 <u>Market Place</u><br />
 <a href='shops.php'>Shops</a><br />
 <a href='itemmarket.php'>Item Market</a><br />
@@ -64,11 +64,11 @@ if ($ir['location'] == 5)
 <a href='cyberbank.php'>Cyber Bank</a><br />";
 }
 print
-        "</td><td valign=top>
+    "</td><td valign=top>
 <u>Dark Side</u><br />
 <a href='fedjail.php'>Federal Jail</a><br />
 <a href='slotsmachine.php?tresde=$tresder'>Slots Machine</a><br />
-<a href='roulette.php?tresde=$tresder'>Roulette</a></td></tr><tr height=100>
+<a href='roulette.php?tresde=$tresder'>Roulette</a></td></tr><tr >
 <td valign=top>";
 if ($ir['location'] == 5)
 {

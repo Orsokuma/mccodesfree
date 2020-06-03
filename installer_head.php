@@ -32,9 +32,8 @@ ob_start();
 <link href="css/game.css" type="text/css" rel="stylesheet" />
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 </head>
-<body>
-    <body bgcolor="#C3C3C3">
-        <img src="logo.png" alt="Your Game Logo" />
-        <h2>Installer</h2>
-        Thank you for choosing MCCodes FREE for your next game.
-        <hr />
+<body bgcolor="#C3C3C3">
+    <img src="logo.png" alt="Your Game Logo" />
+    <h2>Installer</h2>
+    Thank you for choosing MCCodes FREE for your next game.
+    <hr />

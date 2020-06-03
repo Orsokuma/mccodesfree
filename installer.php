@@ -242,7 +242,7 @@ function config()
     		<tr>
     			<td align='center'>Gender</td>
     			<td>
-    				<select name='gender' type='dropdown'>
+    				<select name='gender' >
     					<option value='Male'>Male</option>
     					<option value='Female'>Female</option>
     				</select>

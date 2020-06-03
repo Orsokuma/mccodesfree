@@ -45,7 +45,7 @@ $h->userdata($ir, $lv, $fm, $cm);
 $h->menuarea();
 $game_url = determine_game_urlbase();
 print
-        <<<EOF
+    <<<EOF
 <h3>Donations</h3>
 <b>[<a href='willpotion.php'>Buy Will Potions</a>]</b><br />
 If you become a donator to {GAME_NAME}, you will receive (each time you donate):<br />
@@ -67,7 +67,7 @@ If you become a donator to {GAME_NAME}, you will receive (each time you donate):
 <input type="hidden" name="cn" value="Your Player ID">
 <input type="hidden" name="currency_code" value="USD">
 <input type="hidden" name="tax" value="0">
-<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif"  name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
 </form>
 <b>2nd Offer:</b><ul>
 <li>100 crystals</li>
@@ -85,7 +85,7 @@ If you become a donator to {GAME_NAME}, you will receive (each time you donate):
 <input type="hidden" name="cn" value="Your Player ID">
 <input type="hidden" name="currency_code" value="USD">
 <input type="hidden" name="tax" value="0">
-<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif"  name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
 </form>
 <b>3rd Offer:</b><ul>
 <li>120 IQ, the hardest stat to get in the game!</li>
@@ -103,7 +103,7 @@ If you become a donator to {GAME_NAME}, you will receive (each time you donate):
 <input type="hidden" name="cn" value="Your Player ID">
 <input type="hidden" name="currency_code" value="USD">
 <input type="hidden" name="tax" value="0">
-<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif"  name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
 </form>
 <b>4th Offer ($5.00 pack):</b><ul>
 <li>\$15,000 game money</li>
@@ -123,7 +123,7 @@ If you become a donator to {GAME_NAME}, you will receive (each time you donate):
 <input type="hidden" name="cn" value="Your Player ID">
 <input type="hidden" name="currency_code" value="USD">
 <input type="hidden" name="tax" value="0">
-<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif"  name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
 </form>
 <b>5th Offer ($10.00 pack):</b><ul>
 <li>\$35,000 game money</li>
@@ -144,7 +144,7 @@ If you become a donator to {GAME_NAME}, you will receive (each time you donate):
 <input type="hidden" name="cn" value="Your Player ID">
 <input type="hidden" name="currency_code" value="USD">
 <input type="hidden" name="tax" value="0">
-<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif"  name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
 </form>
 EOF;
 $h->endpage();

@@ -46,13 +46,13 @@ $h->menuarea();
 if ($ir['mailban'])
 {
     die(
-            "<font color=red><h3>! ERROR</h3>
+            "<div style='color:red;'><h3>! ERROR</h3>
 You have been mail banned for {$ir['mailban']} days.<br />
 <br />
-<b>Reason: {$ir['mb_reason']}</font></b>");
+<b>Reason: {$ir['mb_reason']}</b></div>");
 }
 $_GET['ID'] = abs((int) $_GET['ID']);
-print 
+print
         "<table width=75% border=2><tr><td><a href='mailbox.php?action=inbox'>Inbox</a></td> <td><a href='mailbox.php?action=outbox'>Sent Messages</a></td> <td><a href='mailbox.php?action=compose'>Compose Message</a></td> <td><a href='mailbox.php?action=delall'>Delete All Messages</a></td> <td><a href='mailbox.php?action=archive'>Archive Messages</a></td></tr> </table><br />";
 switch ($_GET['action'])
 {
@@ -96,7 +96,7 @@ default:
 function mail_inbox()
 {
     global $ir, $c, $userid, $h;
-    print 
+    print
             "Only the last 25 messages sent to you are visible.<br />
 <table width=75% border=2><tr style='background:gray'><th>From</th><th>Subject/Message</th></tr>";
     $q =
@@ -109,7 +109,7 @@ function mail_inbox()
         print "<tr><td>";
         if ($r['userid'])
         {
-            print 
+            print
                     "<a href='viewuser.php?u={$r['userid']}'>{$r['username']}</a> [{$r['userid']}]";
         }
         else
@@ -117,7 +117,7 @@ function mail_inbox()
             print "SYSTEM";
         }
         $fm = urlencode($r['mail_text']);
-        print 
+        print
                 "</td>\n<td>{$r['mail_subject']}</td></tr><tr><td>Sent at: $sent<br /><a href='mailbox.php?action=compose&ID={$r['userid']}'>Reply</a><br />
 <a href='mailbox.php?action=delete&ID={$r['mail_id']}'>Delete</a> <br />
 <a href='preport.php?ID={$r['userid']}&amp;report=Fradulent mail: {$fm}'>Report</a></td><td>{$r['mail_text']}</td></tr>";
@@ -129,7 +129,7 @@ function mail_inbox()
 function mail_outbox()
 {
     global $ir, $c, $userid, $h;
-    print 
+    print
             "Only the last 25 messages you have sent are visible.<br />
 <table width=75% border=2><tr style='background:gray'><th>To</th><th>Subject/Message</th></tr>";
     $q =
@@ -139,7 +139,7 @@ function mail_outbox()
     while ($r = mysql_fetch_array($q))
     {
         $sent = date('F j, Y, g:i:s a', $r['mail_time']);
-        print 
+        print
                 "<tr><td><a href='viewuser.php?u={$r['userid']}'>{$r['username']}</a> [{$r['userid']}]</td><td>{$r['mail_subject']}</td></tr><tr><td>Sent at: $sent<br /></td><td>{$r['mail_text']}</td></tr>";
     }
 
@@ -148,7 +148,7 @@ function mail_outbox()
 function mail_compose()
 {
     global $ir, $c, $userid, $h;
-    print 
+    print
             "<form action='mailbox.php?action=send' method='post'>
 <table width=75% border=2> <tr>
 <td>ID to send to:</td> <td><input type='text' name='userid' value='{$_GET['ID']}' /></td></tr><tr>
@@ -157,7 +157,7 @@ function mail_compose()
 <td><textarea rows=5 cols=40 name='message'></textarea></td></tr><tr> <td colspan=2><input type='submit' value='Send' /></td></tr></table></form>";
     if ($_GET['ID'])
     {
-        print 
+        print
                 "<br /><table width=75% border=2><tr><td colspan=2><b>Your last 5 mails to/from this person:</b></td></tr>";
         $q =
                 mysql_query(
@@ -166,7 +166,7 @@ function mail_compose()
         while ($r = mysql_fetch_array($q))
         {
             $sent = date('F j, Y, g:i:s a', $r['mail_time']);
-            print 
+            print
                     "<tr><td>$sent</td> <td><b>{$r['sender']} wrote:</b> {$r['mail_text']}</td></tr>";
         }
         print "</table>";
@@ -209,7 +209,7 @@ function mail_delete()
 function mail_delall()
 {
     global $ir, $c, $userid, $h;
-    print 
+    print
             "This will delete all the messages in your inbox.<br />
 There is <b>NO</b> undo, so be sure.<br />
 <a href='mailbox.php?action=delall2'>&gt; Yes, delete all messages</a><br />
@@ -220,7 +220,7 @@ function mail_delall2()
 {
     global $ir, $c, $userid, $h;
     mysql_query("DELETE FROM mail WHERE mail_to='$userid'", $c);
-    print 
+    print
             "All " . mysql_affected_rows($c)
                     . " mails in your inbox were deleted.<br />
 <a href='mailbox.php'>&gt; Back</a>";
@@ -229,7 +229,7 @@ function mail_delall2()
 function mail_archive()
 {
     global $ir, $c, $userid, $h;
-    print 
+    print
             "This tool will download an archive of all your messages.<br />
 <a href='dlarchive.php?a=inbox'>&gt; Download Inbox</a><br />
 <a href='dlarchive.php?a=outbox'>&gt; Download Outbox</a>";

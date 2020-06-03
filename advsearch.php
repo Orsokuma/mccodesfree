@@ -81,7 +81,7 @@ if ($_POST['submit'])
 else
 {
     print
-            <<<EOF
+        <<<EOF
 <h3>Advanced search</h3>
 <span style="color: red;">*</span> is a required field.<br />
 <form action="advsearch.php" method="post">
@@ -89,12 +89,12 @@ else
 Name: <input type="text" name="name" /><br />
 Level: From: <span style="color: red;">*</span><input type="text" name="levelmin" value="1" /> To:
 <span style="color: red;">*</span> <input type="text" name="levelmax" value="100" /><br />
-Gender: <select name="gender" type="dropdown">
+Gender: <select name="gender" >
 <option value="0" selected="selected">Either</option>
 <option value="Male">Male</option>
 <option value="Female">Female</option>
 </select><br />
-House: <select name=house type=dropdown>
+House: <select name=house >
 <option value=0 selected>Any House</option>
 EOF;
     $q = mysql_query("SELECT * FROM houses ORDER BY hWILL ASC", $c);

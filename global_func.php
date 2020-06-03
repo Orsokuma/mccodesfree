@@ -47,7 +47,7 @@ function money_formatter($muny, $symb = '$')
 
 function itemtype_dropdown($connection, $ddname = "item_type", $selected = -1)
 {
-    $ret = "<select name='$ddname' type='dropdown'>";
+    $ret = "<select name='$ddname' >";
     $q =
             mysql_query("SELECT * FROM itemtypes ORDER BY itmtypename ASC",
                     $connection);
@@ -75,7 +75,7 @@ function itemtype_dropdown($connection, $ddname = "item_type", $selected = -1)
 
 function item_dropdown($connection, $ddname = "item", $selected = -1)
 {
-    $ret = "<select name='$ddname' type='dropdown'>";
+    $ret = "<select name='$ddname' >";
     $q =
             mysql_query("SELECT * FROM items ORDER BY itmname ASC",
                     $connection);
@@ -103,7 +103,7 @@ function item_dropdown($connection, $ddname = "item", $selected = -1)
 
 function location_dropdown($connection, $ddname = "location", $selected = -1)
 {
-    $ret = "<select name='$ddname' type='dropdown'>";
+    $ret = "<select name='$ddname' >";
     $q =
             mysql_query("SELECT * FROM cities ORDER BY cityname ASC",
                     $connection);
@@ -131,7 +131,7 @@ function location_dropdown($connection, $ddname = "location", $selected = -1)
 
 function shop_dropdown($connection, $ddname = "shop", $selected = -1)
 {
-    $ret = "<select name='$ddname' type='dropdown'>";
+    $ret = "<select name='$ddname' >";
     $q =
             mysql_query("SELECT * FROM shops ORDER BY shopNAME ASC",
                     $connection);
@@ -159,7 +159,7 @@ function shop_dropdown($connection, $ddname = "shop", $selected = -1)
 
 function user_dropdown($connection, $ddname = "user", $selected = -1)
 {
-    $ret = "<select name='$ddname' type='dropdown'>";
+    $ret = "<select name='$ddname' >";
     $q =
             mysql_query("SELECT * FROM users ORDER BY username ASC",
                     $connection);
@@ -187,7 +187,7 @@ function user_dropdown($connection, $ddname = "user", $selected = -1)
 
 function fed_user_dropdown($connection, $ddname = "user", $selected = -1)
 {
-    $ret = "<select name='$ddname' type='dropdown'>";
+    $ret = "<select name='$ddname' >";
     $q =
             mysql_query(
                     "SELECT * FROM users WHERE fedjail=1 ORDER BY username ASC",

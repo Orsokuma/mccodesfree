@@ -110,15 +110,15 @@ You now have $stat $st and {$ir['energy']} energy left.<br /><br />";
 }
 else
 {
-    $out = "<h3>Gym: Main Lobby<h3>";
+    $out = '<h3>Gym: Main Lobby</h3>';
 }
 $h->userdata($ir, $lv, $fm, $cm);
 $h->menuarea();
 print $out;
 print
-        "Enter the amount of times you wish to train and choose the stat to train.<br />
+    "Enter the amount of times you wish to train and choose the stat to train.<br />
 You can train up to {$ir['energy']} times.<br /><form action='gym.php' method='get'>
-<input type='text' name='times' value='1' /><select type='dropdown' name='train'>
+<input type='text' name='times' value='1' /><select  name='train'>
 <option value='strength'>Strength</option>
 <option value='agility'>Agility</option>
 <option value='labour'>Labour</option>
