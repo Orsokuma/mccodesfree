@@ -79,9 +79,7 @@ else
                             $c) or die(mysql_error());
             $er = mysql_fetch_array($it);
             mysql_query(
-                    "INSERT INTO cashxferlogs VALUES(NULL, $userid, {$_GET['ID']}, {$_POST['money']}, "
-                            . time()
-                            . ", '{$ir['lastip']}', '{$er['lastip']}')", $c);
+                    "INSERT INTO cashxferlogs VALUES(NULL, $userid, {$_GET['ID']}, {$_POST['money']}, ". time(). ", '{$ir['lastip']}', '{$er['lastip']}', '')", $c);
         }
     }
     else
