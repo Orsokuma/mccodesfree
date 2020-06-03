@@ -45,13 +45,13 @@ $h->userdata($ir, $lv, $fm, $cm, 0);
 $_GET['ID'] == (int) $_GET['ID'];
 if (!$_GET['ID'])
 {
-    print "<font color='red'>WTF you doing, bro?</font></b>";
+    print "<span style='color:red;'>WTF you doing, bro?</span></b>";
     $h->endpage();
     exit;
 }
 else if ($_GET['ID'] == $userid)
 {
-    print "<font color='red'><b>Only the crazy attack themselves.</font></b>";
+    print "<span style='color:red;'><b>Only the crazy attack themselves.</span></b>";
     $h->endpage();
     exit;
 }
@@ -64,7 +64,7 @@ $q =
 if (mysql_num_rows($q) == 0)
 {
     print
-            "<b><font color='red'>This player does not exist.</font></b><br />
+            "<b><span style='color:red;'>This player does not exist.</span></b><br />
 <a href='index.php'>&gt; Back</a>";
     $h->endpage();
     $_SESSION['attacking'] = 0;
@@ -74,7 +74,7 @@ $odata = mysql_fetch_array($q);
 if ($odata['hp'] == 1)
 {
     print
-            "<b><font color='red'>This player is unconscious.</font></b><br />
+            "<b><span style='color:red;'>This player is unconscious.</span></b><br />
 <a href='index.php'>&gt; Back</a>";
     $h->endpage();
     $_SESSION['attacking'] = 0;
@@ -92,7 +92,7 @@ else if ($odata['hospital'] and $ir['hospital'] == 0)
 else if ($ir['hospital'])
 {
     print
-            "<b><font color='red'>You can not attack while in hospital.</font></b><br />
+            "<b><span style='color:red;'>You can not attack while in hospital.</span></b><br />
 <a href='hospital.php'>&gt; Back</a>";
     $h->endpage();
     $_SESSION['attacking'] = 0;
@@ -116,7 +116,7 @@ if ($_GET['wepid'])
         else
         {
             print
-                    "<font color='red'><b>You can only attack someone when you have 50% energy</font></b>";
+                    "<span style='color:red;'><b>You can only attack someone when you have 50% energy</span></b>";
             $h->endpage();
             exit;
         }
@@ -132,7 +132,7 @@ if ($_GET['wepid'])
     if (mysql_num_rows($qr) == 0)
     {
         print
-                "<font color='red'>Stop trying to abuse a game bug. You can lose all your EXP for that.</font></b><br />
+                "<span style='color:red;'>Stop trying to abuse a game bug. You can lose all your EXP for that.</span></b><br />
 <a href='index.php'>&gt; Home</a>";
         mysql_query("UPDATE users SET exp=0 where userid=$userid", $c);
         die("");
@@ -170,16 +170,16 @@ if ($_GET['wepid'])
                 "UPDATE users SET hp=hp-$mydamage WHERE userid={$_GET['ID']}",
                 $c);
         print
-                "<font color=red>{$_GET['nextstep']}. Using your {$r1['itmname']} you hit {$odata['username']} doing $mydamage damage ({$odata['hp']})</font><br />\n";
+                "<span style='color:red;'>{$_GET['nextstep']}. Using your {$r1['itmname']} you hit {$odata['username']} doing $mydamage damage ({$odata['hp']})</span><br />\n";
         $_SESSION['attacklog'] .=
-                "<font color=red>{$_GET['nextstep']}. Using his {$r1['itmname']} {$ir['username']} hit {$odata['username']} doing $mydamage damage ({$odata['hp']})</font><br />\n";
+                "<span style='color:red;'>{$_GET['nextstep']}. Using his {$r1['itmname']} {$ir['username']} hit {$odata['username']} doing $mydamage damage ({$odata['hp']})</span><br />\n";
     }
     else
     {
         print
-                "<font color=red>{$_GET['nextstep']}. You tried to hit {$odata['username']} but missed ({$odata['hp']})</font><br />\n";
+                "<span style='color:red;'>{$_GET['nextstep']}. You tried to hit {$odata['username']} but missed ({$odata['hp']})</span><br />\n";
         $_SESSION['attacklog'] .=
-                "<font color=red>{$_GET['nextstep']}. {$ir['username']} tried to hit {$odata['username']} but missed ({$odata['hp']})</font><br />\n";
+                "<span style='color:red;'>{$_GET['nextstep']}. {$ir['username']} tried to hit {$odata['username']} but missed ({$odata['hp']})</span><br />\n";
     }
     if ($odata['hp'] <= 0)
     {
@@ -242,17 +242,17 @@ if ($_GET['wepid'])
             mysql_query("UPDATE users SET hp=hp-$dam WHERE userid=$userid", $c);
             $ns = $_GET['nextstep'] + 1;
             print
-                    "<font color=blue>{$ns}. Using his $wep {$odata['username']} hit you doing $dam damage ({$youdata['hp']})</font><br />\n";
+                    "<span style='color:blue;'>{$ns}. Using his $wep {$odata['username']} hit you doing $dam damage ({$youdata['hp']})</span><br />\n";
             $_SESSION['attacklog'] .=
-                    "<font color=blue>{$ns}. Using his $wep {$odata['username']} hit {$ir['username']} doing $dam damage ({$youdata['hp']})</font><br />\n";
+                    "<span style='color:blue;'>{$ns}. Using his $wep {$odata['username']} hit {$ir['username']} doing $dam damage ({$youdata['hp']})</span><br />\n";
         }
         else
         {
             $ns = $_GET['nextstep'] + 1;
             print
-                    "<font color=blue>{$ns}. {$odata['username']} tried to hit you but missed ({$youdata['hp']})</font><br />\n";
+                    "<span style='color:blue;'>{$ns}. {$odata['username']} tried to hit you but missed ({$youdata['hp']})</span><br />\n";
             $_SESSION['attacklog'] .=
-                    "<font color=blue>{$ns}. {$odata['username']} tried to hit {$ir['username']} but missed ({$youdata['hp']})</font><br />\n";
+                    "<span style='color:blue;'>{$ns}. {$odata['username']} tried to hit {$ir['username']} but missed ({$youdata['hp']})</span><br />\n";
         }
         if ($youdata['hp'] <= 0)
         {
@@ -297,7 +297,7 @@ else
             mysql_query(
                     "SELECT iv.*,i.* FROM inventory iv LEFT JOIN items i ON iv.inv_itemid=i.itmid WHERE iv.inv_userid=$userid AND (i.itmtype = 3 || i.itmtype = 4)",
                     $c);
-    print "<tr><td colspan=2 align='center'>Attack with:<br />";
+    print "<tr><td colspan=2 class='center'>Attack with:<br />";
     while ($r = mysql_fetch_array($mw))
     {
         if (!$_GET['nextstep'])

@@ -55,7 +55,7 @@ $moneys = array();
 print
         "<h3>Battle Tent</h3>
 <b>Welcome to the battle tent! Here you can challenge NPCs for money.</b>
-<table width=75%><tr style='background: gray; '><th>Bot Name</th><th>Level</th><th>Times Owned</th><th>Ready To Be Challenged?</th><th>Money Won</th><th>Challenge</th></tr>";
+<table style='width:75%;'><tr style='background: gray; '><th>Bot Name</th><th>Level</th><th>Times Owned</th><th>Ready To Be Challenged?</th><th>Money Won</th><th>Challenge</th></tr>";
 foreach ($bots as $k => $v)
 {
     $earn = $moneys[$k];
@@ -73,11 +73,11 @@ foreach ($bots as $k => $v)
             "<tr><td>{$r['username']}</td><td>{$r['level']}</td><td>$times</td><td>";
     if ($r['hp'] >= $r['maxhp'] / 2)
     {
-        print "<font color=green>Yes</font>";
+        print "<span style='color:green;'>Yes</span>";
     }
     else
     {
-        print "<font color=red>No</font>";
+        print "<span style='color:red;'>No</span>";
     }
     print "</td><td>$earn</td><td>";
     if ($r['npcid'])

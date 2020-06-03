@@ -70,7 +70,7 @@ function cmarket_index()
     print
             "<a href='cmarket.php?action=add'>&gt; Add A Listing</a><br /><br />
 Viewing all listings...
-<table width=75%> <tr style='background:gray'> <th>Adder</th> <th>Qty</th> <th>Price each</th> <th>Price total</th> <th>Links</th> </tr>";
+<table style='width:75%;'> <tr style='background:gray'> <th>Adder</th> <th>Qty</th> <th>Price each</th> <th>Price total</th> <th>Links</th> </tr>";
     $q =
             mysql_query(
                     "SELECT cm.*, u.* FROM crystalmarket cm LEFT JOIN users u ON u.userid=cm.cmADDER ORDER BY cmPRICE/cmQTY ASC",
@@ -192,10 +192,10 @@ function crystal_add()
     {
         print
                 "<b>Adding a listing...</b><br /><br />
-You have <b>{$ir['crystals']}</b> crystal(s) that you can add to the market.<form action='cmarket.php?action=add' method='post'><table width=50% border=2><tr>
+You have <b>{$ir['crystals']}</b> crystal(s) that you can add to the market.<form action='cmarket.php?action=add' method='post'><table style='width:50%;border:2px solid;'><tr>
 <td>Crystals:</td> <td><input type='text' name='amnt' value='{$ir['crystals']}' /></td></tr><tr>
 <td>Price Each:</td> <td><input type='text' name='price' value='200' /></td></tr><tr>
-<td colspan=2 align=center><input type='submit' value='Add To Market' /></tr></table></form>";
+<td colspan=2 class=center><input type='submit' value='Add To Market' /></tr></table></form>";
     }
 }
 $h->endpage();

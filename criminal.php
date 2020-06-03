@@ -46,7 +46,7 @@ $h->menuarea();
 $q = mysql_query("SELECT * FROM crimegroups ORDER by cgORDER ASC", $c);
 print
         "<b>Criminal Centre</b><br />
-<table width='75%'><tr><th>Crime</th><th>Cost</th><th>Do</th></tr>";
+<table style='width:75%;'><tr><th>Crime</th><th>Cost</th><th>Do</th></tr>";
 while ($r = mysql_fetch_array($q))
 {
     print

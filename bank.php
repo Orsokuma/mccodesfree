@@ -96,7 +96,7 @@ function index()
     print
             "\n<b>You currently have \${$ir['bankmoney']} in the bank.</b><br />
 At the end of each day, your bank balance will go up by 2%.<br />
-<table width='75%' border='2'> <tr> <td width='50%'><b>Deposit Money</b><br />
+<table style='width:75%;border:2px solid;'> <tr> <td style='width:50%;'><b>Deposit Money</b><br />
 It will cost you 15% of the money you deposit, rounded up. The maximum fee is \$3,000.<form action='bank.php?action=deposit' method='post'>
 Amount: <input type='text' name='deposit' value='{$ir['money']}' /><br />
 <input type='submit' value='Deposit' /></form></td> <td>

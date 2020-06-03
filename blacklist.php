@@ -70,11 +70,11 @@ default:
 function black_list()
 {
     global $ir, $c, $userid;
-    print 
+    print
             "<a href='blacklist.php?action=add'>&gt; Add an Enemy</a><br />
 These are the people on your black list. ";
     $q_y = mysql_query("SELECT * FROM blacklist WHERE bl_ADDED=$userid", $c);
-    print 
+    print
             mysql_num_rows($q_y)
                     . " people have added you to their list.<br />Most hated: [";
     $q2r =
@@ -89,12 +89,12 @@ These are the people on your black list. ";
         {
             print " | ";
         }
-        print 
+        print
                 "<a href='viewuser.php?u={$r2r['bl_ADDED']}'>{$r2r['username']}</a>";
     }
-    print 
+    print
             "]
-<table width=90%><tr style='background:gray'> <th>ID</th> <th>Name</th> <th>Mail</th> <th>Attack</th> <th>Remove</th> <th>Comment</th> <th>Change Comment</th> <th>Online?</th></tr>";
+<table style='width:90%;'><tr style='background:gray'> <th>ID</th> <th>Name</th> <th>Mail</th> <th>Attack</th> <th>Remove</th> <th>Comment</th> <th>Change Comment</th> <th>Online?</th></tr>";
     $q =
             mysql_query(
                     "SELECT bl.*,u.* FROM blacklist bl LEFT JOIN users u ON bl.bl_ADDED=u.userid WHERE bl.bl_ADDER=$userid ORDER BY u.username ASC",
@@ -103,16 +103,16 @@ These are the people on your black list. ";
     {
         if ($r['laston'] >= time() - 15 * 60)
         {
-            $on = "<font color=green><b>Online</b></font>";
+            $on = "<span style='color:green;'><b>Online</b></span>";
         }
         else
         {
-            $on = "<font color=red><b>Offline</b></font>";
+            $on = "<span style='color:red;'><b>Offline</b></span>";
         }
         $d = "";
         if ($r['donatordays'])
         {
-            $r['username'] = "<font color=red>{$r['username']}</font>";
+            $r['username'] = "<span style='color:red;'>{$r['username']}</span>";
             $d =
                     "<img src='donator.gif' alt='Donator: {$r['donatordays']} Days Left' title='Donator: {$r['donatordays']} Days Left' />";
         }
@@ -120,7 +120,7 @@ These are the people on your black list. ";
         {
             $r['bl_COMMENT'] = "N/A";
         }
-        print 
+        print
                 "<tr> <td>{$r['userid']}</td> <td><a href='viewuser.php?u={$r['userid']}'>{$r['username']}</a> $d</td> <td><a href='mailbox.php?action=compose&ID={$r['userid']}'>Mail</a></td> <td><a href='attack.php?ID={$r['userid']}'>Attack</a></td> <td><a href='blacklist.php?action=remove&f={$r['bl_ID']}'>Remove</a></td> <td>{$r['bl_COMMENT']}</td> <td><a href='blacklist.php?action=ccomment&f={$r['bl_ID']}'>Change</a></td> <td>$on</td></tr>";
     }
 }
@@ -150,7 +150,7 @@ function add_enemy()
         }
         else if ($userid == $_POST['ID'])
         {
-            print 
+            print
                     "You cannot be so lonely that you have to try and add yourself.";
         }
         else if (mysql_num_rows($q) == 0)
@@ -163,7 +163,7 @@ function add_enemy()
                     "INSERT INTO blacklist VALUES(NULL, $userid, {$_POST['ID']}, '{$_POST['comment']}')",
                     $c) or die(mysql_error());
             $r = mysql_fetch_array($q);
-            print 
+            print
                     "{$r['username']} was added to your black list.<br />
 <a href='blacklist.php'>&gt; Back</a>";
         }
@@ -173,7 +173,7 @@ function add_enemy()
         $_GET['ID'] =
                 (isset($_GET['ID']) && is_numeric($_GET['ID']))
                         ? abs(intval($_GET['ID'])) : '';
-        print 
+        print
                 "Adding an enemy!<form action='blacklist.php?action=add' method='post'>
 Enemy's ID: <input type='text' name='ID' value='{$_GET['ID']}' /><br />
 Comment (optional): <br />
@@ -189,7 +189,7 @@ function remove_enemy()
     mysql_query(
             "DELETE FROM blacklist WHERE bl_ID={$_GET['f']} AND bl_ADDER=$userid",
             $c);
-    print 
+    print
             "Black list entry removed!<br />
 <a href='blacklist.php'>&gt; Back</a>";
 }
@@ -208,7 +208,7 @@ function change_comment()
         mysql_query(
                 "UPDATE blacklist SET bl_COMMENT='{$_POST['comment']}' WHERE bl_ID={$_POST['f']} AND bl_ADDER=$userid",
                 $c);
-        print 
+        print
                 "Comment for enemy changed!<br />
 <a href='blacklist.php'>&gt; Back</a>";
     }
@@ -223,7 +223,7 @@ function change_comment()
         {
             $r = mysql_fetch_array($q);
             $comment = str_replace('<br />', "\n", $r['bl_COMMENT']);
-            print 
+            print
                     "Changing a comment.<form action='blacklist.php?action=ccomment' method='post'>
 <input type='hidden' name='f' value='{$_GET['f']}' /><br />
 Comment: <br />
