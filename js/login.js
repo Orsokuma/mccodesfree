@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 function getCookieVal(offset)
 {
-    var endstr = document.cookie.indexOf(";", offset);
+    let endstr = document.cookie.indexOf(";", offset);
     if (endstr == -1)
         {
             endstr = document.cookie.length;
@@ -28,11 +28,11 @@ function getCookieVal(offset)
 }
 function GetCookie(name)
 {
-    var j;
-    var arg = name + "=";
-    var alen = arg.length;
-    var clen = document.cookie.length;
-    var i = 0;
+    let j;
+    const arg = name + "=";
+    const alen = arg.length;
+    const clen = document.cookie.length;
+    let i = 0;
     while (i < clen)
     {
         j = i + alen;
@@ -66,9 +66,11 @@ function DeleteCookie(name, path, domain)
                 + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
     }
 }
-var usr;
-var pw;
-var sv;
+
+let usr;
+let pw;
+let sv;
+
 function getme()
 {
     usr = document.login.username;
