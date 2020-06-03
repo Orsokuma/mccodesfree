@@ -32,7 +32,7 @@ class headers
         global $ir;
         echo <<<EOF
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link href="css/game.css" type="text/css" rel="stylesheet" />
@@ -84,22 +84,22 @@ EOF;
         }
         print
                 "
-<table width=100%><tr><td><img src='logo.png'></td>
+<table width=100%><tr><td><img src='logo.png' alt=''></td>
 <td><b>Name:</b> {$u} [{$ir['userid']}] $d<br />
 <b>Money:</b> {$fm}<br />
 <b>Level:</b> {$ir['level']}<br />
 <b>Crystals:</b> {$ir['crystals']}<br />
 [<a href='logout.php'>Emergency Logout</a>]</td><td>
 <b>Energy:</b> {$enperc}%<br />
-<img src=bargreen.gif width=$enperc height=10><img src=barred.gif width=$enopp height=10><br />
+<img src=bargreen.gif width=$enperc height=10  alt=''><img src=barred.gif width=$enopp height=10  alt=''><br />
 <b>Will:</b> {$wiperc}%<br />
-<img src=bargreen.gif width=$wiperc height=10><img src=barred.gif width=$wiopp height=10><br />
+<img src=bargreen.gif width=$wiperc height=10  alt=''><img src=barred.gif width=$wiopp height=10  alt=''><br />
 <b>Brave:</b> {$ir['brave']}/{$ir['maxbrave']}<br />
-<img src=bargreen.gif width=$brperc height=10><img src=barred.gif width=$bropp height=10><br />
+<img src=bargreen.gif width=$brperc height=10  alt=''><img src=barred.gif width=$bropp height=10  alt=''><br />
 <b>EXP:</b> {$experc}%<br />
-<img src=bargreen.gif width=$experc height=10><img src=barred.gif width=$exopp height=10><br />
+<img src=bargreen.gif width=$experc height=10  alt=''><img src=barred.gif width=$exopp height=10  alt=''><br />
 <b>Health:</b> {$hpperc}%<br />
-<img src=bargreen.gif width=$hpperc height=10><img src=barred.gif width=$hpopp height=10></td></tr></table></div><center><b><u><a href='voting.php'>Vote for {GAME_NAME} on various gaming sites and be rewarded!</a></u></b></center><br />
+<img src=bargreen.gif width=$hpperc height=10  alt=''><img src=barred.gif width=$hpopp height=10  alt=''></td></tr></table></div><center><b><u><a href='voting.php'>Vote for {GAME_NAME} on various gaming sites and be rewarded!</a></u></b></center><br />
 <center><b><u><a href='donator.php'>Donate to {GAME_NAME}, it's only \$3 and gets you a lot of benefits!</a></u></b></center><br />
                 ";
         $q = mysql_query("SELECT * FROM ads ORDER BY rand() LIMIT 1", $c);

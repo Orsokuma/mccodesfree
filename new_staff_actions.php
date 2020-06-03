@@ -10,7 +10,7 @@ if (!defined('IN_STAFF'))
 function fed_user_form()
 {
     global $ir, $c, $h, $userid;
-    print 
+    print
             "<h3>Jailing User</h3>
 The user will be put in fed jail and will be unable to do anything in the game.<br />
 <form action='new_staff.php?action=fedsub' method='post'>
@@ -63,7 +63,7 @@ function fed_user_submit()
 function unfed_user_form()
 {
     global $ir, $c, $h, $userid;
-    print 
+    print
             "<h3>Unjailing User</h3>
 The user will be taken out of fed jail.<br />
 <form action='new_staff.php?action=unfedsub' method='post'>
@@ -87,13 +87,13 @@ function unfed_user_submit()
 function view_attack_logs()
 {
     global $ir, $c, $h, $userid;
-    print 
+    print
             "<h3>Attack Logs</h3>
 <table width=75%><tr style='background:gray'><th>Time</th><th>Detail</th></tr>";
     $q = mysql_query("SELECT * FROM attacklogs ORDER BY time DESC", $c);
     while ($r = mysql_fetch_array($q))
     {
-        print 
+        print
                 "<tr><td>" . date('F j, Y, g:i:s a', $r['time'])
                         . "</td><td>{$r['attacker']} attacked {$r['attacked']} and {$r['result']} and stole \${$r['stole']}</td></tr>";
     }
@@ -103,7 +103,7 @@ function view_attack_logs()
 function ip_search_form()
 {
     global $ir, $c, $h, $userid;
-    print 
+    print
             "<h3>IP Search</h3>
 <form action='new_staff.php?action=ipsub' method='post'>
 IP: <input type='text' name='ip' value='...' /><br />
@@ -116,7 +116,7 @@ function ip_search_submit()
     $disp_ip =
             htmlentities(stripslashes($_POST['ip']), ENT_QUOTES, 'ISO-8859-1');
     $mysql_ip = mysql_real_escape_string(stripslashes($_POST['ip']), $c);
-    print 
+    print
             "Searching for users with the IP: <b>{$disp_ip}</b><br />
 <table width=75%><tr style='background:gray'> <th>User</th> <th>Level</th> <th>Money</th> </tr>";
     $q = mysql_query("SELECT * FROM users WHERE lastip='{$mysql_ip}'", $c);
@@ -124,10 +124,10 @@ function ip_search_submit()
     while ($r = mysql_fetch_array($q))
     {
         $ids[] = $r['userid'];
-        print 
+        print
                 "\n<tr> <td> <a href='viewuser.php?u={$r['userid']}'>{$r['username']}</a></td> <td> {$r['level']}</td> <td>{$r['money']}</td> </tr>";
     }
-    print 
+    print
             "</table><br />
 <b>Mass Jail</b><br />
 <form action='new_staff.php?action=massjailip' method='post'>
@@ -186,7 +186,7 @@ function mass_jail()
 function view_itm_logs()
 {
     global $ir, $c, $h, $userid;
-    print 
+    print
             "<h3>Item Xfer Logs</h3>
 <table width=75%><tr style='background:gray'><th>Time</th><th>Detail</th></tr>";
     $q =
@@ -199,7 +199,7 @@ function view_itm_logs()
                     ORDER BY ix.ixTIME DESC", $c);
     while ($r = mysql_fetch_array($q))
     {
-        print 
+        print
                 "<tr><td>" . date("F j, Y, g:i:s a", $r['ixTIME'])
                         . "</td><td>{$r['sender']} sent {$r['ixQTY']}  {$r['item']}(s) to {$r['sent']} </td></tr>";
     }
@@ -209,16 +209,11 @@ function view_itm_logs()
 function view_cash_logs()
 {
     global $ir, $c, $h, $userid;
-    print 
+    print
             "<h3>Cash Xfer Logs</h3>
 <table width=75% border=1> <tr style='background:gray'> <th>ID</th> <th>Time</th> <th>User From</th> <th>User To</th> <th>Multi?</th> <th>Amount</th> <th>&nbsp;</th> </tr>";
-    $q =
-            mysql_query(
-                    "SELECT cx.*,u1.username as sender, u2.username as sent FROM cashxferlogs cx LEFT JOIN users u1 ON cx.cxFROM=u1.userid LEFT JOIN users u2 ON cx.cxTO=u2.userid ORDER BY cx.cxTIME DESC",
-                    $c)
-            or die(
-                    mysql_error() . "<br />"
-                            . "SELECT cx.*,u1.username as sender, u2.username as sent FROM cashxferlogs cx LEFT JOIN users u1 ON cx.cxFROM=u1.userid LEFT JOIN users u2 ON cx.cxTO=u2.userid ORDER BY cx.cxTIME DESC");
+    $query = 'SELECT cx.*,u1.username as sender, u2.username as sent FROM cashxferlogs cx LEFT JOIN users u1 ON cx.cxFROM=u1.userid LEFT JOIN users u2 ON cx.cxTO=u2.userid ORDER BY cx.cxTIME DESC';
+    $q =mysql_query($query, $c) or die(mysql_error() . '<br />' . $query);
     while ($r = mysql_fetch_array($q))
     {
         if ($r['cxFROMIP'] == $r['cxTOIP'])
@@ -229,7 +224,7 @@ function view_cash_logs()
         {
             $m = "";
         }
-        print 
+        print
                 "<tr><td>{$r['cxID']}</td> <td>"
                         . date("F j, Y, g:i:s a", $r['cxTIME'])
                         . "</td><td><a href='viewuser.php?u={$r['cxFROM']}'>{$r['sender']}</a> [{$r['cxFROM']}] (IP: {$r['cxFROMIP']}) </td><td><a href='viewuser.php?u={$r['cxTO']}'>{$r['sent']}</a> [{$r['cxTO']}] (IP: {$r['cxTOIP']}) </td> <td>$m</td> <td> \${$r['cxAMOUNT']}</td> <td> [<a href='new_staff.php?action=fedform&XID={$r['cxFROM']}'>Jail Sender</a>] [<a href='new_staff.php?action=fedform&XID={$r['cxTO']}'>Jail Receiver</a>]</td> </tr>";
@@ -242,7 +237,7 @@ function view_cash_logs()
 function give_item_form()
 {
     global $ir, $c;
-    print 
+    print
             "<h3>Giving Item To User</h3>
 <form action='new_staff.php?action=giveitemsub' method='post'>
 User: " . user_dropdown($c, 'user') . "<br />
@@ -270,14 +265,14 @@ function give_item_submit()
     mysql_query(
             "INSERT INTO inventory VALUES(NULL,{$_POST['item']},{$_POST['user']},{$_POST['qty']})",
             $c) or die(mysql_error());
-    print 
+    print
             "You gave {$_POST['qty']} of item ID {$_POST['item']} to user ID {$_POST['user']}";
 }
 
 function mail_user_form()
 {
     global $ir, $c, $h, $userid;
-    print 
+    print
             "<h3>Mail Banning User</h3>
 The user will be banned from the mail system.<br />
 <form action='new_staff.php?action=mailsub' method='post'>
@@ -312,7 +307,7 @@ function inv_user_begin()
 {
     global $ir, $c, $h, $userid;
 
-    print 
+    print
             "<h3>Viewing User Inventory</h3>
 You may browse this user's inventory.<br />
 <form action='new_staff.php?action=invuser' method='post'>
@@ -337,7 +332,7 @@ function inv_user_view()
     }
     else
     {
-        print 
+        print
                 "<b>Their items are listed below.</b><br />
 <table width=100%><tr style='background-color:gray;'><th>Item</th><th>Sell Value</th><th>Total Sell Value</th><th>Links</th></tr>";
         while ($i = mysql_fetch_array($inv))
@@ -349,7 +344,7 @@ function inv_user_view()
             }
             print "</td><td>\${$i['itmsellprice']}</td><td>";
             print "$" . ($i['itmsellprice'] * $i['inv_qty']);
-            print 
+            print
                     "</td><td>[<a href='new_staff.php?action=deleinv&ID={$i['inv_id']}'>Delete</a>]";
             print "</td></tr>";
         }
@@ -368,7 +363,7 @@ function inv_delete()
 function credit_user_form()
 {
     global $ir, $c, $h, $userid;
-    print 
+    print
             "<h3>Crediting User</h3>
 You can give a user money/crystals.<br />
 <form action='new_staff.php?action=creditsub' method='post'>
@@ -396,7 +391,7 @@ function view_mail_logs()
     $_GET['st'] = abs((int) $_GET['st']);
     $rpp = 100;
 
-    print 
+    print
             "<h3>Mail Logs</h3>
 <table width=75% border=2> \n<tr style='background:gray'> <th>ID</th> <th>Time</th> <th>User From</th> <th>User To</th> <th width>Subj</th> <th width=30%>Msg</th> <th>&nbsp;</th> </tr>";
     $q =
@@ -408,7 +403,7 @@ function view_mail_logs()
                             . "SELECT cx.*,u1.username as sender, u2.username as sent FROM cashxferlogs cx LEFT JOIN users u1 ON cx.cxFROM=u1.userid LEFT JOIN users u2 ON cx.cxTO=u2.userid ORDER BY cx.cxTIME DESC LIMIT {$_GET['st']},$rpp");
     while ($r = mysql_fetch_array($q))
     {
-        print 
+        print
                 "\n<tr><td>{$r['mail_id']}</td> <td>"
                         . date("F j, Y, g:i:s a", $r['mail_time'])
                         . "</td><td>{$r['sender']} [{$r['mail_from']}] </td> <td>{$r['sent']} [{$r['mail_to']}] </td> \n<td> {$r['mail_subject']}</td> \n<td>{$r['mail_text']}</td> <td> [<a href='new_staff.php?action=mailform&XID={$r['mail_from']}'>MailBan Sender</a>] [<a href='new_staff.php?action=mailform&XID={$r['mail_to']}'>MailBan Receiver</a>]</td> </tr>";
@@ -433,7 +428,7 @@ function view_mail_logs()
 function reports_view()
 {
     global $ir, $c, $h, $userid;
-    print 
+    print
             "<h3>Player Reports</h3>
 <table width=80%><tr style='background:gray'><th>Reporter</th> <th>Offender</th> <th>What they did</th> <th>&nbsp;</th> </tr>";
     $q =
@@ -444,7 +439,7 @@ function reports_view()
     {
         $report =
                 nl2br(htmlentities($r['prTEXT'], ENT_QUOTES, 'ISO-8859-1'));
-        print 
+        print
                 "\n<tr>
                 		<td><a href='viewuser.php?u={$r['prREPORTER']}'>{$r['reporter']}</a> [{$r['prREPORTER']}]</td>
                 		<td><a href='viewuser.php?u={$r['prREPORTED']}'>{$r['offender']}</a> [{$r['prREPORTED']}]</td>
@@ -460,7 +455,7 @@ function report_clear()
     global $ir, $c, $h, $userid;
     $_GET['ID'] = abs((int) $_GET['ID']);
     mysql_query("DELETE FROM preports WHERE prID={$_GET['ID']}", $c);
-    print 
+    print
             "Report cleared and deleted!<br />
 <a href='new_staff.php?action=reportsview'>&gt; Back</a>";
 }
@@ -470,7 +465,7 @@ function report_clear()
 function new_user_form()
 {
     global $ir, $c;
-    print 
+    print
             "Adding a new user.<br />
 <form action='new_staff.php?action=newusersub' method='post'>
 Username: <input type='text' name='username' /><br />
@@ -500,7 +495,7 @@ function new_user_submit()
     if (!isset($_POST['username']) || !isset($_POST['login_name'])
             || !isset($_POST['userpass']))
     {
-        print 
+        print
                 "You missed one or more of the required fields. Please go back and try again.<br />
 <a href='new_staff.php?action=newuser'>&gt; Back</a>";
         $h->endpage();
@@ -555,7 +550,7 @@ function new_user_submit()
 function new_item_form()
 {
     global $ir, $c;
-    print 
+    print
             "<h3>Adding an item to the game</h3><form action='new_staff.php?action=newitemsub' method='post'>
 Item Name: <input type='text' name='itmname' value='' /><br />
 Item Desc.: <input type='text' name='itmdesc' value='' /><br />
@@ -579,7 +574,7 @@ function new_item_submit()
             || !isset($_POST['itmtype']) || !isset($_POST['itmbuyprice'])
             || !isset($_POST['itmsellprice']))
     {
-        print 
+        print
                 "You missed one or more of the fields. Please go back and try again.<br />
 <a href='new_staff.php?action=newitem'>&gt; Back</a>";
         $h->endpage();
@@ -606,7 +601,7 @@ function new_item_submit()
                     "SELECT COUNT(`itmtypeid`) FROM itemtypes WHERE `itmtypeid` = {$itmtype}");
     if (mysql_result($itq, 0, 0) == 0)
     {
-        print 
+        print
                 "That item type doesn't exist.<br />
 <a href='new_staff.php?action=newitem'>&gt; Back</a>";
         $h->endpage();
@@ -653,7 +648,7 @@ function kill_item_form()
 {
     global $ir, $c, $h, $userid;
 
-    print 
+    print
             "<h3>Deleting Item</h3>
 The item will be permanently removed from the game.<br />
 <form action='new_staff.php?action=killitemsub' method='post'>
@@ -687,7 +682,7 @@ function kill_item_submit()
 function edit_item_begin()
 {
     global $ir, $c, $h, $userid;
-    print 
+    print
             "<h3>Editing Item</h3>
 You can edit any aspect of this item.<br />
 <form action='new_staff.php?action=edititemform' method='post'>
@@ -757,7 +752,7 @@ function edit_item_form()
     {
         $def = 10;
     }
-    print 
+    print
             "<h3>Editing Item</h3>
 <form action='new_staff.php?action=edititemsub' method='post'>
 <input type='hidden' name='itmid' value='{$_POST['item']}' />
@@ -770,7 +765,7 @@ Item Buyable: <input type='checkbox' name='itmbuyable'";
     {
         print " checked='checked'";
     }
-    print 
+    print
             " /><br />
 Item Price: <input type='text' name='itmbuyprice' value='{$itemi['itmbuyprice']}' /><br />
 Item Sell Value: <input type='text' name='itmsellprice' value='{$itemi['itmsellprice']}'/><br /><br />
@@ -790,7 +785,7 @@ function edit_item_sub()
             || !isset($_POST['itmtype']) || !isset($_POST['itmbuyprice'])
             || !isset($_POST['itmsellprice']))
     {
-        print 
+        print
                 "You missed one or more of the fields. Please go back and try again.<br />
 <a href='new_staff.php?action=edititem'>&gt; Back</a>";
         $h->endpage();
@@ -802,7 +797,7 @@ function edit_item_sub()
                     "SELECT COUNT(`itmid`) FROM items WHERE `itmid` = {$itmid}");
     if (mysql_result($iq, 0, 0) == 0)
     {
-        print 
+        print
                 "That item doesn't exist.<br />
 <a href='new_staff.php?action=edititem'>&gt; Back</a>";
         $h->endpage();
@@ -829,7 +824,7 @@ function edit_item_sub()
                     "SELECT COUNT(`itmtypeid`) FROM itemtypes WHERE `itmtypeid` = {$itmtype}");
     if (mysql_result($itq, 0, 0) == 0)
     {
-        print 
+        print
                 "That item type doesn't exist.<br />
 <a href='new_staff.php?action=edititem'>&gt; Back</a>";
         $h->endpage();
@@ -878,7 +873,7 @@ function edit_item_sub()
 function new_shop_form()
 {
     global $ir, $c, $h;
-    print 
+    print
             "<h3>Adding a New Shop</h3>
 <form action='new_staff.php?action=newshopsub' method='post'>
 Shop Name: <input type='text' name='sn' value='' /><br />
@@ -893,7 +888,7 @@ function new_shop_submit()
     global $ir, $c, $h;
     if (!isset($_POST['sn']) || !isset($_POST['sd']))
     {
-        print 
+        print
                 "You missed a field, go back and try again.<br />
 <a href='new_staff.php?action=newitem'>&gt; Back</a>";
     }
@@ -912,7 +907,7 @@ function new_shop_submit()
                         "SELECT COUNT(`cityid`) FROM cities WHERE `cityid` = {$location}");
         if (mysql_result($locq, 0, 0) == 0)
         {
-            print 
+            print
                     "That location doesn't exist.<br />
 <a href='new_staff.php?action=newshop'>&gt; Back</a>";
             $h->endpage();
@@ -927,7 +922,7 @@ function new_shop_submit()
 function new_stock_form()
 {
     global $ir, $c, $h;
-    print 
+    print
             "<h3>Adding an item to a shop</h3>
 <form action='new_staff.php?action=newstocksub' method='post'>
 Shop: " . shop_dropdown($c, "shop") . "<br />
@@ -948,7 +943,7 @@ function new_stock_submit()
                     $c);
     if (mysql_result($shopq, 0, 0) == 0)
     {
-        print 
+        print
                 "That shop doesn't exist.<br />
 <a href='new_staff.php?action=newstock'>&gt; Back</a>";
         $h->endpage();
@@ -960,7 +955,7 @@ function new_stock_submit()
                     $c);
     if (mysql_result($itemq, 0, 0) == 0)
     {
-        print 
+        print
                 "That item doesn't exist.<br />
 <a href='new_staff.php?action=newstock'>&gt; Back</a>";
         $h->endpage();
@@ -973,7 +968,7 @@ function new_stock_submit()
 function edit_user_begin()
 {
     global $ir, $c, $h, $userid;
-    print 
+    print
             "<h3>Editing User</h3>
 You can edit any aspect of this user. <br />
 <form action='new_staff.php?action=edituserform' method='post'>
@@ -996,14 +991,14 @@ function edit_user_form()
                     $c);
     if (mysql_num_rows($d) == 0)
     {
-        print 
+        print
                 "That user doesn't exist.<br />
                 &gt; <a href='new_staff.php?action=edituser'>Try again</a>";
         return;
     }
     $itemi = mysql_fetch_array($d);
     $snbit = htmlentities($itemi['staffnotes'], ENT_QUOTES, 'ISO-8859-1');
-    print 
+    print
             "<h3>Editing User</h3>
 <form action='new_staff.php?action=editusersub' method='post'>
 <input type='hidden' name='userid' value='{$_POST['user']}' />
@@ -1126,7 +1121,7 @@ function edit_user_sub()
         if (mysql_num_rows($u) != 0)
         {
             print "That username is in use, choose another.";
-            print 
+            print
                     "<br /><a href='new_staff.php?action=edituser'>&gt; Back</a>";
             $h->endpage();
             exit;
@@ -1135,7 +1130,7 @@ function edit_user_sub()
         if (mysql_num_rows($oq) == 0)
         {
             print 'That user doesn\'t exist.';
-            print 
+            print
                     "<br /><a href='new_staff.php?action=edituser'>&gt; Back</a>";
             $h->endpage();
             exit;
@@ -1164,7 +1159,7 @@ function edit_user_sub()
 function fed_edit_form()
 {
     global $ir, $c, $h, $userid;
-    print 
+    print
             "<h3>Editing Fedjail Reason</h3>
 You are editing a player's sentence in fed jail.<br />
 <form action='new_staff.php?action=fedesub' method='post'>
@@ -1200,7 +1195,7 @@ function newspaper_form()
     global $ir, $c, $h, $userid;
     $q = mysql_query("SELECT * FROM papercontent LIMIT 1", $c);
     $news = htmlentities(mysql_result($q, 0, 0), ENT_QUOTES, 'ISO-8859-1');
-    print 
+    print
             "<h3>Editing Newspaper</h3><form action='new_staff.php?action=subnews' method='post'>
 <textarea rows='7' cols='35' name='newspaper'>$news</textarea><br /><input type='submit' value='Change' /></form>";
 }
@@ -1217,7 +1212,7 @@ function donators_list()
 {
     global $ir, $c, $h, $userid;
 
-    print 
+    print
             "<h3>Donations</h3>
 This lists the donations that need to be checked with our records and processed.<br />
 <table width=75%><tr style='background:gray'><th>ID</th><th>Donator</th><th>Time</th><th>&nbsp;</th></tr>";
@@ -1227,7 +1222,7 @@ This lists the donations that need to be checked with our records and processed.
                     $c);
     while ($r = mysql_fetch_array($q))
     {
-        print 
+        print
                 "<tr><td>{$r['dp_id']}</td><td><a href='viewuser.php?u={$r['userid']}'>{$r['username']}</td><td>"
                         . date('F j, Y, g:i:s a', $r['dp_time'])
                         . "</td><td><a href='new_staff.php?action=acceptdp&ID={$r['dp_id']}'>Accept</a> | <a href='new_staff.php?action=declinedp&ID={$r['dp_id']}'>Decline</a></td></tr>";
@@ -1297,7 +1292,7 @@ function decline_dp()
 function give_dp_form()
 {
     global $ir, $c, $h, $userid;
-    print 
+    print
             "<h3>Giving User DP</h3>
 The user will receive the benefits of one 30-day donator pack.<br />
 <form action='new_staff.php?action=givedpsub' method='post'>
@@ -1366,7 +1361,7 @@ function staff_list()
     global $ir, $c, $h, $userid;
 
     print "<h3>Staff Management</h3>";
-    print 
+    print
             "<b>Admins</b><br />
 <table width=80%><tr style='background:gray'> <th>User</th> <th>Online?</th> <th>Links</th> </tr>";
     $q =
@@ -1383,11 +1378,11 @@ function staff_list()
         {
             $on = "<font color=red><b>Offline</b></font>";
         }
-        print 
+        print
                 "\n<tr> <td><a href='viewuser.php?u={$r['userid']}'>{$r['username']}</a> [{$r['userid']}]</td> <td>$on</td> <td><a href='new_staff.php?action=userlevel&amp;level=3&amp;ID={$r['userid']}' >Secretary</a> &middot; <a href='new_staff.php?action=userlevel&amp;level=4&amp;ID={$r['userid']}' >IRC Op</a> &middot; <a href='new_staff.php?action=userlevel&amp;level=5&amp;ID={$r['userid']}' >Assistant</a> &middot; <a href='new_staff.php?action=userlevel&amp;level=1&amp;ID={$r['userid']}' >Member</a></td></tr>";
     }
     print "</table>";
-    print 
+    print
             "<b>Secretaries</b><br />
 <table width=80%><tr style='background:gray'> <th>User</th> <th>Online?</th> <th>Links</th> </tr>";
     $q =
@@ -1404,11 +1399,11 @@ function staff_list()
         {
             $on = "<font color=red><b>Offline</b></font>";
         }
-        print 
+        print
                 "\n<tr> <td><a href='viewuser.php?u={$r['userid']}'>{$r['username']}</a> [{$r['userid']}]</td> <td>$on</td> <td><a href='new_staff.php?action=userlevel&amp;level=2&amp;ID={$r['userid']}' >Admin</a> &middot; <a href='new_staff.php?action=userlevel&amp;level=4&amp;ID={$r['userid']}' >IRC Op</a> &middot; <a href='new_staff.php?action=userlevel&amp;level=5&amp;ID={$r['userid']}' >Assistant</a> &middot; <a href='new_staff.php?action=userlevel&amp;level=1&amp;ID={$r['userid']}' >Member</a></td></tr>";
     }
     print "</table>";
-    print 
+    print
             "<b>IRC Ops</b><br />
 <table width=80%><tr style='background:gray'> <th>User</th> <th>Online?</th> <th>Links</th> </tr>";
     $q =
@@ -1425,11 +1420,11 @@ function staff_list()
         {
             $on = "<font color=red><b>Offline</b></font>";
         }
-        print 
+        print
                 "\n<tr> <td><a href='viewuser.php?u={$r['userid']}'>{$r['username']}</a> [{$r['userid']}]</td> <td>$on</td> <td><a href='new_staff.php?action=userlevel&amp;level=2&amp;ID={$r['userid']}' >Admin</a> &middot; <a href='new_staff.php?action=userlevel&amp;level=3&amp;ID={$r['userid']}' >Secretary</a> &middot; <a href='new_staff.php?action=userlevel&amp;level=5&amp;ID={$r['userid']}' >Assistant</a> &middot; <a href='new_staff.php?action=userlevel&amp;level=1&amp;ID={$r['userid']}' >Member</a></td></tr>";
     }
     print "</table>";
-    print 
+    print
             "<b>Assistants</b><br />
 <table width=80%><tr style='background:gray'> <th>User</th> <th>Online?</th> <th>Links</th> </tr>";
     $q =
@@ -1446,7 +1441,7 @@ function staff_list()
         {
             $on = "<font color=red><b>Offline</b></font>";
         }
-        print 
+        print
                 "\n<tr> <td><a href='viewuser.php?u={$r['userid']}'>{$r['username']}</a> [{$r['userid']}]</td> <td>$on</td> <td><a href='new_staff.php?action=userlevel&amp;level=2&amp;ID={$r['userid']}' >Admin</a> &middot; <a href='new_staff.php?action=userlevel&amp;level=3&amp;ID={$r['userid']}' >Secretary</a> &middot; <a href='new_staff.php?action=userlevel&amp;level=4&amp;ID={$r['userid']}' >IRC Op</a> &middot; <a href='new_staff.php?action=userlevel&amp;level=1&amp;ID={$r['userid']}' >Member</a></td></tr>";
     }
     print "</table>";
@@ -1468,7 +1463,7 @@ function userlevelform()
 {
     global $ir, $c, $h, $userid;
 
-    print 
+    print
             "<h3>User Level Adjust</h3>
 <form action='new_staff.php' method='get'>
 <input type='hidden' name='action' value='userlevel'>
@@ -1510,13 +1505,13 @@ function massmailer()
                             . time() . ",'$subj','{$_POST['text']}')", $c);
             print "Mass mail sent to {$r['username']}.<br />";
         }
-        print 
+        print
                 "Mass mail sending complete!<br />
 <a href='new_staff.php'>&gt; Back</a>";
     }
     else
     {
-        print 
+        print
                 "<b>Mass Mailer</b><br />
 <form action='new_staff.php?action=massmailer' method='post'> Text: <br />
 <textarea name='text' rows='7' cols='40'></textarea><br />
@@ -1535,7 +1530,7 @@ function adnewspaper_form()
 {
     global $ir, $c, $h, $userid;
 
-    print 
+    print
             "<h3>Editing Admin News</h3><form action='new_staff.php?action=subadnews' method='post'>
 <textarea rows='7' cols='35' name='newspaper'>";
     include "admin.news";
@@ -1576,7 +1571,7 @@ function admin_user_record()
         else
         {
             $r = mysql_fetch_array($q);
-            print 
+            print
                     "<table width='100%' border='2'><tr style='background: gray'>
 <th>User</th> <th>Stats</th> <th>Restrictions</th> </tr>
 <tr>
@@ -1636,7 +1631,7 @@ Mail Ban Reason: {$r['mb_reason']}
     }
     else
     {
-        print 
+        print
                 <<<EOF
 <form action='new_staff.php' method='get'>
 <input type='hidden' name='action' value='record' />
@@ -1801,14 +1796,14 @@ function admin_user_changeid()
                         "SELECT userid FROM users WHERE userid = $new_id", $c);
         if (mysql_num_rows($q2))
         {
-            print 
+            print
                     "<font color='red'><b>That User ID is already in Use.</b></font><br />\n";
             $_POST['newid'] = 0;
             admin_user_changeid();
         }
         else
         {
-            print 
+            print
                     "You are changing " . mysql_result($q, 0, 0)
                             . "'s user ID to $new_id<br />
 <form action='new_staff.php?action=change_id' method='post'>
@@ -1821,7 +1816,7 @@ function admin_user_changeid()
     }
     else
     {
-        print 
+        print
                 "<h3>Change User ID</h3>
 <form action='new_staff.php?action=change_id' method='post'>
 <table border='1' width='50%'>

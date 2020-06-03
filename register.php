@@ -22,10 +22,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 session_start();
 require "mysql.php";
 require "global_func.php";
-print 
+print
         <<<EOF
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link href="css/game.css" type="text/css" rel="stylesheet" />
@@ -114,7 +114,7 @@ if ($_POST['username'])
                     VALUES(NULL, {$_POST['ref']}, $i, " . time()
                             . ", '{$e_rip}', '$e_oip')", $c);
         }
-        print 
+        print
                 "You have signed up, enjoy the game.<br />
 &gt; <a href='login.php'>Login</a>";
     }

@@ -21,23 +21,30 @@ function getCookieVal(offset)
 {
     var endstr = document.cookie.indexOf(";", offset);
     if (endstr == -1)
-        endstr = document.cookie.length;
+        {
+            endstr = document.cookie.length;
+        }
     return unescape(document.cookie.substring(offset, endstr));
 }
 function GetCookie(name)
 {
+    var j;
     var arg = name + "=";
     var alen = arg.length;
     var clen = document.cookie.length;
     var i = 0;
     while (i < clen)
     {
-        var j = i + alen;
+        j = i + alen;
         if (document.cookie.substring(i, j) == arg)
-            return getCookieVal(j);
+            {
+                return getCookieVal(j);
+            }
         i = document.cookie.indexOf(" ", i) + 1;
-        if (i == 0)
-            break;
+        if (0 == i)
+            {
+                break;
+            }
     }
     return null;
 }
@@ -68,12 +75,12 @@ function getme()
     pw = document.login.password;
     sv = document.login.save;
 
-    if (GetCookie('username') != null)
+    if (null != GetCookie('username'))
     {
         usr.value = GetCookie('username');
         pw.value = GetCookie('password');
     }
-    if (GetCookie('save') == 'true')
+    if ('true' == GetCookie('save'))
     {
         sv[0].checked = true;
     }
@@ -85,7 +92,7 @@ function getme()
 }
 function saveme()
 {
-    if (usr.value.length != 0 && pw.value.length != 0)
+    if (0 != usr.value.length && 0 != pw.value.length)
     {
         if (sv[0].checked)
         {
