@@ -56,9 +56,6 @@ print
         "<table width=75% border=2><tr><td><a href='mailbox.php?action=inbox'>Inbox</a></td> <td><a href='mailbox.php?action=outbox'>Sent Messages</a></td> <td><a href='mailbox.php?action=compose'>Compose Message</a></td> <td><a href='mailbox.php?action=delall'>Delete All Messages</a></td> <td><a href='mailbox.php?action=archive'>Archive Messages</a></td></tr> </table><br />";
 switch ($_GET['action'])
 {
-case 'inbox':
-    mail_inbox();
-    break;
 
 case 'outbox':
     mail_outbox();
